@@ -1,6 +1,7 @@
 package mobici.servlets;
 
-import java.io.IOException; 
+import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,6 +17,8 @@ import mobici.model.Usuario;
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	
 	private final String ADMIN_EMAIL = "root";
 	private final String ADMIN_PASSWORD = "root";
 	
@@ -30,24 +33,34 @@ public class LoginServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String email = req.getParameter("email");
-		String password = req.getParameter("password");
-		Usuario usuario = UsuarioDAOImplementation.getInstance().loginUsuario(email, password);
-		if (ADMIN_EMAIL.equals("root") && ADMIN_PASSWORD.equals("root") ) {
-			//req.getSession().setAttribute("adminLogged", true);
-			//req.getSession().setAttribute("usuario_list", UsuarioDAOImplementation.getInstance().readAllUsuarios());
-			resp.sendRedirect(req.getContextPath() + "/InterfazUsuario.jsp");
-		} else if (null != usuario) {
-			req.getSession().setAttribute("usuario", usuario);
-			req.getSession().setAttribute("email", email);
-			//Pongo lo del usuario porque aun no hay hecho nada
-			resp.sendRedirect(req.getContextPath() + "/Usuario.jsp");
-		} else {
-			//Volvemos al Login
-			resp.sendRedirect(req.getContextPath() + "/Login.jsp");
-		}
-	}
+    	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    		String email = req.getParameter("email");
+    		//log(email);
+    		String contraseña = req.getParameter("contraseña");
+    		Usuario usuario = UsuarioDAOImplementation.getInstancia().login(email, contraseña);
+    		
+    		if (ADMIN_EMAIL.equals(email) && ADMIN_PASSWORD.equals(contraseña) && req.getSession().getAttribute("usuario")==null ) {
+    			//req.getSession().setAttribute("adminLogged", true);
+    			//Se supone que ira al interfaz del Administrador. 
+    			resp.sendRedirect(req.getContextPath() + "/InterfazAdmin.jsp");
+    		}else if (null != usuario && req.getSession().getAttribute("usuario")==null) {
+    			//log("estoy aqui");
+    			//log(email);
+    			req.getSession().setAttribute("usuario", usuario);
+    			req.getSession().setAttribute("email", email);
+    			resp.sendRedirect(req.getContextPath() + "/InterfazUsuario.jsp");
+    		} else if(req.getSession().getAttribute("usuario")!= null && usuario != null){
+    			//log("ahora estoy aqui");
+    			req.getSession().setAttribute("usuario", null);
+    			req.getSession().setAttribute("usuario", usuario);
+    			req.getSession().setAttribute("email", null);
+    			req.getSession().setAttribute("email", email);
+    		
+    			resp.sendRedirect(req.getContextPath() + "/InterfazUsuario.jsp");
+    		}else{
+    			resp.sendRedirect(req.getContextPath() + "/Login.jsp");
+    		}
+    	}
 
 
 	/**

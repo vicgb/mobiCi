@@ -1,42 +1,92 @@
 package mobici.dao;
 
+import java.util.Collection;
+import java.util.List;
+
+import javax.persistence.Query;
+
+import org.hibernate.Session;
+
 import mobici.model.Usuario;
 
-public class UsuarioDAOImplementation implements UsuarioDAO{
+public class UsuarioDAOImplementation implements UsuarioDAO {
 
-	private static UsuarioDAOImplementation instance = null;
-	private UsuarioDAOImplementation() {}
-	public static UsuarioDAOImplementation getInstance() {
-		if ( null == instance ) {
-			instance = new UsuarioDAOImplementation();
-		}
-		return instance;
-	}
+	private static  UsuarioDAOImplementation instancia = null;
 	
+	private UsuarioDAOImplementation() {
+	}
+
+	public static UsuarioDAOImplementation getInstancia() {
+		if( null == instancia ) 
+			instancia = new UsuarioDAOImplementation();
+		return instancia;
+	}
+
 	
 	@Override
-	public Usuario loginUsuario(String email, String contraseña) {
-		// TODO Auto-generated method stub
-		return null;
+	public void create(Usuario usuario) {
+		Session session = SessionFactoryService.get().openSession();
+		session.beginTransaction();
+		session.save(usuario);
+		session.getTransaction().commit();
+		session.close();
 	}
 
 	@Override
-	public Usuario leerUsuario(Usuario usuario) {
-		// TODO Auto-generated method stub
-		return null;
+	public Usuario read(String email) {
+		Session session = SessionFactoryService.get().openSession();
+		session.beginTransaction();
+		Usuario u =session.get(Usuario.class, email);
+		session.getTransaction().commit();
+		session.close();
+		return u;
 	}
 
 	@Override
-	public Usuario borrarUsuario(Usuario usuario) {
-		// TODO Auto-generated method stub
-		return null;
+	public void update(Usuario usuario) {
+		Session session = SessionFactoryService.get().openSession();
+		session.beginTransaction();
+		session.saveOrUpdate(usuario);
+		session.getTransaction().commit();
+		session.close();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public void crearUsuario(Usuario usuario) {
-		// TODO Auto-generated method stub
-		
+	public void delete(Usuario usuario) {
+		Session session = SessionFactoryService.get().openSession();
+		session.beginTransaction();
+		session.delete(usuario);
+		session.getTransaction().commit();
+		session.close();
 	}
 
-	//Aqui van a desarrollarse todas las acciones
+	@SuppressWarnings("unchecked")
+	@Override
+	public Collection<Usuario> readAll() {
+		Session session = SessionFactoryService.get().openSession();
+		session.beginTransaction();
+		List<Usuario> usus = session.createQuery("from Usuario").list();
+		session.getTransaction().commit();
+		session.close();
+		return usus;
+	}
+
+	
+	@Override
+	public Usuario login(String email, String password) {
+		Session session = SessionFactoryService.get().openSession();
+		session.beginTransaction();
+		Usuario u = null;
+		Query q = session.createQuery("select u from Usuario u where u.email = :email and u.password = :password");
+		q.setParameter("email", email);
+		q.setParameter("password", password);
+		List<Usuario> usus = q.getResultList();
+		if (usus.size() > 0)
+			u = (Usuario) (q.getResultList().get(0));
+		session.getTransaction().commit();
+		session.close();
+		return u;
+	}
+
 }
