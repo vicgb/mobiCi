@@ -14,7 +14,7 @@ public class Anclaje implements Serializable {
 
 	//Cada anclaje se identifica por su id
 	@Id
-	private String email;
+	private String id;
 
 	//Resto de atributos
 	private String idEstacion;
@@ -25,7 +25,7 @@ public class Anclaje implements Serializable {
 	
 	//Relacion con Estacion
 	@ManyToOne
-	private String estacion;
+	private Estacion estacion;
 
 	//Constructor
 	public Anclaje() {
@@ -33,12 +33,12 @@ public class Anclaje implements Serializable {
 	}
 
 	//Geters y Seters
-	public String getEmail() {
-		return email;
+	public String getId() {
+		return id;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getIdEstacion() {
@@ -57,11 +57,11 @@ public class Anclaje implements Serializable {
 		this.estado = estado;
 	}
 
-	public String getEstacion() {
+	public Estacion getEstacion() {
 		return estacion;
 	}
 
-	public void setEstacion(String estacion) {
+	public void setEstacion(Estacion estacion) {
 		this.estacion = estacion;
 	}
 
@@ -79,7 +79,7 @@ public class Anclaje implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((bicicleta == null) ? 0 : bicicleta.hashCode());
-		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((estacion == null) ? 0 : estacion.hashCode());
 		result = prime * result + ((estado == null) ? 0 : estado.hashCode());
 		result = prime * result + ((idEstacion == null) ? 0 : idEstacion.hashCode());
@@ -100,10 +100,10 @@ public class Anclaje implements Serializable {
 				return false;
 		} else if (!bicicleta.equals(other.bicicleta))
 			return false;
-		if (email == null) {
-			if (other.email != null)
+		if (id == null) {
+			if (other.id != null)
 				return false;
-		} else if (!email.equals(other.email))
+		} else if (!id.equals(other.id))
 			return false;
 		if (estacion == null) {
 			if (other.estacion != null)
@@ -123,7 +123,7 @@ public class Anclaje implements Serializable {
 	//ToString
 	@Override
 	public String toString() {
-		return "Anclaje [email=" + email + ", idEstacion=" + idEstacion + ", estado=" + estado + ", estacion="
+		return "Anclaje [id=" + id + ", idEstacion=" + idEstacion + ", estado=" + estado + ", estacion="
 				+ estacion + ", bicicleta=" + bicicleta + "]";
 	}
 	

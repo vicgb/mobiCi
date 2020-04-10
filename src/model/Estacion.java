@@ -20,10 +20,10 @@ public class Estacion implements Serializable {
 	
 	//Resto de atributos
 	private String latitud;
-	private EstadoAnclaje longitud;
+	private String longitud;
 	private int capacidad;
 	
-	@OneToMany(mappedBy = "advisor", fetch =
+	@OneToMany(mappedBy = "estacion", fetch =
 	FetchType.EAGER)
 	private Collection<Anclaje> anclajes;
 	
@@ -49,11 +49,11 @@ public class Estacion implements Serializable {
 		this.latitud = latitud;
 	}
 
-	public EstadoAnclaje getLongitud() {
+	public String getLongitud() {
 		return longitud;
 	}
 
-	public void setLongitud(EstadoAnclaje longitud) {
+	public void setLongitud(String longitud) {
 		this.longitud = longitud;
 	}
 

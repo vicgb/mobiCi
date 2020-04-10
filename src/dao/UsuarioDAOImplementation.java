@@ -7,7 +7,6 @@ import javax.persistence.Query;
 
 import org.hibernate.Session;
 
-import dao.SessionFactoryService;
 import model.Usuario;
 
 public class UsuarioDAOImplementation implements UsuarioDAO {
