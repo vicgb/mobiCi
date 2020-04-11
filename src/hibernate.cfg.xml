@@ -14,7 +14,12 @@
 		<property name="hibernate.enable_lazy_load_no_trans">true</property>
 		<property name="show_sql">true</property>
 		<property name="hbm2ddl.auto">update</property>
-		<mapping class="model.TFG" />
-		<mapping class="model.Professor" />
+		<mapping class="mobici.model.Usuario" />
+		<mapping class="mobici.model.Anclaje" />
+		<mapping class="mobici.model.Bicicleta" />
+		<mapping class="mobici.model.Estacion" />
+		<mapping class="mobici.model.EstadoAnclaje" />
+		<mapping class="mobici.model.EstadoBici" />
+		
 	</session-factory>
 </hibernate-configuration>
