@@ -3,7 +3,8 @@ package mobici.model;
 import java.io.Serializable;
 
 
-
+import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -14,10 +15,11 @@ public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	//Cada usuario se identifica por su email
+	
 	@Id
+    @Basic(optional = false)
+    @Column(name = "email",unique=true, nullable = false)
 	private String email;
-
-	//Resto de atributos
 	private String nombre;
 	private String apellido1;
 	private String apellido2;
@@ -27,11 +29,8 @@ public class Usuario implements Serializable {
 	private String fechaCadu;
 	private String cvv;
 	private String password;
-
-	//Constructor
-	public Usuario() {
-		super();
-	}
+	private String repPassword;
+	
 
 	//Geters y Seters
 	public String getEmail() {
@@ -114,6 +113,14 @@ public class Usuario implements Serializable {
 		this.password = password;
 	}
 
+	public String getRepPassword() {
+		return repPassword;
+	}
+
+	public void setRepPassword(String repPassword) {
+		this.repPassword = repPassword;
+	}
+	
 	//HashCode y Equals
 	@Override
 	public int hashCode() {
@@ -201,5 +208,7 @@ public class Usuario implements Serializable {
 				+ apellido2 + ", telefono=" + telefono + ", dni=" + dni + ", numTarjeta=" + numTarjeta + ", fechaCadu="
 				+ fechaCadu + ", cvv=" + cvv + ", password=" + password + "]";
 	}
+
+	
 	
 }
