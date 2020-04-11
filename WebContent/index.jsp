@@ -3,11 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <title>mobiCi</title>
+<%@ include file = "Navbar.jsp" %>
 </head>
 <body>
-<h2>Login</h2>
 
+<div class = "formularioLogin">
 <%@ include file = "Login.jsp" %>
-
+</div>
 </body>
 </html>

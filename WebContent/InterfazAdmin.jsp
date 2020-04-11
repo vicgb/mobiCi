@@ -8,6 +8,6 @@
 <%@ include file = "NavbarRegistrado.jsp" %>
 </head>
 <body>
-<p> Aqui tiene que ir el interfaz de Usuario </p>
+<p>Aqui va a ir el interfaz del administrador</p>
 </body>
 </html>

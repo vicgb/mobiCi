@@ -4,10 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title></title>
+<title>Insert title here</title>
 <%@ include file = "NavbarRegistrado.jsp" %>
 </head>
 <body>
-<p> Aqui tiene que ir el interfaz de Usuario </p>
+<p> Se ha creado el usuario correctamente. Deberia estar en la BBDD </p>
+<a href="/mobici/index.jsp">IR AL LOGIN</a>
 </body>
 </html>
