@@ -1,7 +1,5 @@
 package mobici.dao;
 
-
-
 import java.util.Collection;
 import java.util.List;
 
@@ -22,7 +20,7 @@ public class AnclajeDAOImplementation implements AnclajeDAO {
 		return instancia;
 	}
 
-	@SuppressWarnings("unchecked")
+
 	@Override
 	public void create(Anclaje anclaje) {
 		Session session = SessionFactoryService.get().openSession();
@@ -32,7 +30,7 @@ public class AnclajeDAOImplementation implements AnclajeDAO {
 		session.close();
 	}
 
-	@SuppressWarnings("unchecked")
+	
 	@Override
 	public Anclaje read(String id) {
 		Session session = SessionFactoryService.get().openSession();
@@ -43,7 +41,7 @@ public class AnclajeDAOImplementation implements AnclajeDAO {
 		return a;
 	}
 
-	@SuppressWarnings("unchecked")
+	
 	@Override
 	public void update(Anclaje anclaje) {
 		Session session = SessionFactoryService.get().openSession();
@@ -53,7 +51,7 @@ public class AnclajeDAOImplementation implements AnclajeDAO {
 		session.close();
 	}
 
-	@SuppressWarnings("unchecked")
+	
 	@Override
 	public void delete(Anclaje anclaje) {
 		Session session = SessionFactoryService.get().openSession();

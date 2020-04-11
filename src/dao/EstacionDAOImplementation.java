@@ -5,70 +5,72 @@ import java.util.List;
 
 import org.hibernate.Session;
 
-import mobici.model.Bicicleta;
 
-public class BicicletaDAOImplementation implements BicicletaDAO {
+import mobici.model.Estacion;
+
+public class EstacionDAOImplementation implements EstacionDAO {
 	
-	private static  BicicletaDAOImplementation instancia = null;
+	private static  EstacionDAOImplementation instancia = null;
 	
-	private BicicletaDAOImplementation() {
+	private EstacionDAOImplementation() {
 	}
 
-	public static BicicletaDAOImplementation getInstancia() {
+	public static EstacionDAOImplementation getInstancia() {
 		if( null == instancia ) 
-			instancia = new BicicletaDAOImplementation();
+			instancia = new EstacionDAOImplementation();
 		return instancia;
 	}
 
 	
 	@Override
-	public void create(Bicicleta bicicleta) {
+	public void create(Estacion estacion) {
 		Session session = SessionFactoryService.get().openSession();
 		session.beginTransaction();
-		session.save(bicicleta);
+		session.save(estacion);
 		session.getTransaction().commit();
 		session.close();
 	}
 
 	
 	@Override
-	public Bicicleta read(String id) {
+	public Estacion read(String id) {
 		Session session = SessionFactoryService.get().openSession();
 		session.beginTransaction();
-		Bicicleta b =session.get(Bicicleta.class, id);
+		Estacion e =session.get(Estacion.class, id);
 		session.getTransaction().commit();
 		session.close();
-		return b;
+		return e;
 	}
 
 	
 	@Override
-	public void update(Bicicleta bicicleta) {
+	public void update(Estacion estacion) {
 		Session session = SessionFactoryService.get().openSession();
 		session.beginTransaction();
-		session.saveOrUpdate(bicicleta);
+		session.saveOrUpdate(estacion);
 		session.getTransaction().commit();
 		session.close();
 	}
 
-
+	
 	@Override
-	public void delete(Bicicleta bicicleta) {
+	public void delete(Estacion estacion) {
 		Session session = SessionFactoryService.get().openSession();
 		session.beginTransaction();
-		session.delete(bicicleta);
+		session.delete(estacion);
 		session.getTransaction().commit();
 		session.close();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public Collection<Bicicleta> readAll() {
+	public Collection<Estacion> readAll() {
 		Session session = SessionFactoryService.get().openSession();
 		session.beginTransaction();
-		List<Bicicleta> bicis = session.createQuery("from Bicicleta").list();
+		List<Estacion> ests = session.createQuery("from Estacion").list();
 		session.getTransaction().commit();
 		session.close();
-		return bicis;
+		return ests;
 	}
+
 }

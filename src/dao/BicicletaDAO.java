@@ -1,7 +1,6 @@
 package mobici.dao;
 
 
-
 import java.util.Collection;
 
 import mobici.model.Bicicleta;
