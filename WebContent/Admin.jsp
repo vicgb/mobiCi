@@ -84,7 +84,7 @@
 <td>${anclajei.id}</td>
 <td>${anclajei.idEstacion}</td>
 <td>${anclajei.estado}</td>
-<td>${anclajei.bicicleta.id}</td>
+<td>${anclajei.bicicleta}</td>
 </tr>
 </c:forEach>
 </table>

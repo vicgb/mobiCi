@@ -20,6 +20,10 @@ public class FormLogoutServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.getSession().removeAttribute("admin");
+		req.getSession().removeAttribute("usuarios");
+		req.getSession().removeAttribute("estaciones");
+		req.getSession().removeAttribute("anclajes");
+		req.getSession().removeAttribute("bicicletas");
 		req.getSession().invalidate();
 		getServletContext().getRequestDispatcher("/index.html").forward(req,resp);
 	}

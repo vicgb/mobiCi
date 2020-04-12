@@ -41,6 +41,8 @@ public class FormLoginServlet extends HttpServlet {
 		List<Anclaje> anclajes = (List<Anclaje>) AnclajeDAOImplementation.getInstancia().readAll();
 		List<Bicicleta> bicicletas = (List<Bicicleta>) BicicletaDAOImplementation.getInstancia().readAll();
 		
+		Usuario usuario = UsuarioDAOImplementation.getInstancia().login(email, password);
+		
 		if( ADMIN_EMAIL.equals(email) && ADMIN_PASSWORD.equals(password) ) {
 			req.getSession().setAttribute("admin", true);
 			req.getSession().setAttribute("usuarios", usuarios);
@@ -48,6 +50,12 @@ public class FormLoginServlet extends HttpServlet {
 			req.getSession().setAttribute("anclajes", anclajes);
 			req.getSession().setAttribute("bicicletas", bicicletas);
 			getServletContext().getRequestDispatcher("/Admin.jsp").forward(req,resp);
+		} else if (null != usuario) {
+			req.getSession().setAttribute("usuario", usuario);
+			req.getSession().setAttribute("estaciones", estaciones);
+			req.getSession().setAttribute("anclajes", anclajes);
+			req.getSession().setAttribute("bicicletas", bicicletas);
+			getServletContext().getRequestDispatcher("/Usuario.jsp").forward(req, resp);
 		} else {
 			getServletContext().getRequestDispatcher("/index.html").forward(req,resp);
 		}
