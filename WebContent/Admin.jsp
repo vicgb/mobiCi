@@ -25,6 +25,7 @@
 <td>DNI</td>
 <td>Numero Tarjeta</td>
 <td>Fecha Caducidad</td>
+<td>Estado</td>
 <td>CVV</td>
 </tr>
 <c:forEach items="${usuarios}" var="usuarioi">
@@ -39,6 +40,7 @@
 <td>${usuarioi.numTarjeta}</td>
 <td>${usuarioi.fechaCadu}</td>
 <td>${usuarioi.cvv}</td>
+<td>${usuarioi.estadoUsuario}</td>
 </tr>
 </c:forEach>
 </table>

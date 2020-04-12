@@ -25,6 +25,7 @@ public class Usuario implements Serializable {
 	private String fechaCadu;
 	private String cvv;
 	private String password;
+	private EstadoUsuario estadoUsuario;
 
 	//Constructor
 	public Usuario() {
@@ -111,6 +112,14 @@ public class Usuario implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	public EstadoUsuario getEstadoUsuario() {
+		return estadoUsuario;
+	}
+	
+	public void setEstadoUsuario(EstadoUsuario estadoUsuario) {
+		this.estadoUsuario = estadoUsuario;
+	}
 
 	//HashCode y Equals
 	@Override
@@ -127,6 +136,7 @@ public class Usuario implements Serializable {
 		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
 		result = prime * result + ((numTarjeta == null) ? 0 : numTarjeta.hashCode());
 		result = prime * result + ((telefono == null) ? 0 : telefono.hashCode());
+		result = prime * result + ((estadoUsuario == null) ? 0 : estadoUsuario.hashCode());
 		return result;
 	}
 
@@ -189,6 +199,11 @@ public class Usuario implements Serializable {
 				return false;
 		} else if (!telefono.equals(other.telefono))
 			return false;
+		if (estadoUsuario == null) {
+			if (other.estadoUsuario!= null)
+				return false;
+		} else if (!estadoUsuario.equals(other.estadoUsuario))
+			return false;
 		return true;
 	}
 
@@ -197,6 +212,6 @@ public class Usuario implements Serializable {
 	public String toString() {
 		return "Usuario [email=" + email + ", nombre=" + nombre + ", apellido1=" + apellido1 + ", apellido2="
 				+ apellido2 + ", telefono=" + telefono + ", dni=" + dni + ", numTarjeta=" + numTarjeta + ", fechaCadu="
-				+ fechaCadu + ", cvv=" + cvv + ", password=" + password + "]";
+				+ fechaCadu + ", cvv=" + cvv + ", password=" + password + ", estadoUsuario=" + estadoUsuario + "]";
 	}
 }

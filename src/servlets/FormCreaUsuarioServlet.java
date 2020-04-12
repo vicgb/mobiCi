@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.UsuarioDAOImplementation;
+import model.EstadoUsuario;
 import model.Usuario;
 
 /**
@@ -54,6 +55,7 @@ public class FormCreaUsuarioServlet extends HttpServlet {
 			usuario.setNumTarjeta(numTarjeta);
 			usuario.setFechaCadu(fechaCadu);
 			usuario.setCvv(cvv);
+			usuario.setEstadoUsuario(EstadoUsuario.NADA);
 
 			UsuarioDAOImplementation.getInstancia().create(usuario);
 			List<Usuario> lu = new ArrayList<Usuario>();
