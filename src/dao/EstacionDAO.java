@@ -1,8 +1,16 @@
+<<<<<<< HEAD
 package mobici.dao;
 
 import java.util.Collection;
 
 import mobici.model.Estacion;
+=======
+package dao;
+
+import java.util.Collection;
+
+import model.Estacion;
+>>>>>>> Persistencia
 
 public interface EstacionDAO {
 	
@@ -13,4 +21,8 @@ public interface EstacionDAO {
 	public Collection<Estacion> readAll();
 
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> Persistencia

@@ -1,12 +1,21 @@
+<<<<<<< HEAD
 package mobici.dao;
+=======
+package dao;
+>>>>>>> Persistencia
 
 import java.util.Collection;
 import java.util.List;
 
 import org.hibernate.Session;
 
+<<<<<<< HEAD
 
 import mobici.model.Estacion;
+=======
+import model.Anclaje;
+import model.Estacion;
+>>>>>>> Persistencia
 
 public class EstacionDAOImplementation implements EstacionDAO {
 	
@@ -21,7 +30,11 @@ public class EstacionDAOImplementation implements EstacionDAO {
 		return instancia;
 	}
 
+<<<<<<< HEAD
 	
+=======
+	@SuppressWarnings("unchecked")
+>>>>>>> Persistencia
 	@Override
 	public void create(Estacion estacion) {
 		Session session = SessionFactoryService.get().openSession();
@@ -31,7 +44,11 @@ public class EstacionDAOImplementation implements EstacionDAO {
 		session.close();
 	}
 
+<<<<<<< HEAD
 	
+=======
+	@SuppressWarnings("unchecked")
+>>>>>>> Persistencia
 	@Override
 	public Estacion read(String id) {
 		Session session = SessionFactoryService.get().openSession();
@@ -42,7 +59,11 @@ public class EstacionDAOImplementation implements EstacionDAO {
 		return e;
 	}
 
+<<<<<<< HEAD
 	
+=======
+	@SuppressWarnings("unchecked")
+>>>>>>> Persistencia
 	@Override
 	public void update(Estacion estacion) {
 		Session session = SessionFactoryService.get().openSession();
@@ -52,7 +73,11 @@ public class EstacionDAOImplementation implements EstacionDAO {
 		session.close();
 	}
 
+<<<<<<< HEAD
 	
+=======
+	@SuppressWarnings("unchecked")
+>>>>>>> Persistencia
 	@Override
 	public void delete(Estacion estacion) {
 		Session session = SessionFactoryService.get().openSession();
@@ -73,4 +98,8 @@ public class EstacionDAOImplementation implements EstacionDAO {
 		return ests;
 	}
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> Persistencia

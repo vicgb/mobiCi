@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 package mobici.model;
+=======
+package model;
+>>>>>>> Persistencia
 
 import java.io.Serializable;
 
@@ -74,4 +78,8 @@ public class Bicicleta implements Serializable {
 	public String toString() {
 		return "Bici [id=" + id + ", estado=" + estado + "]";
 	}
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> Persistencia

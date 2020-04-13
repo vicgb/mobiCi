@@ -1,11 +1,19 @@
+<<<<<<< HEAD
 package mobici.dao;
+=======
+package dao;
+>>>>>>> Persistencia
 
 import java.util.Collection;
 import java.util.List;
 
 import org.hibernate.Session;
 
+<<<<<<< HEAD
 import mobici.model.Bicicleta;
+=======
+import model.Bicicleta;
+>>>>>>> Persistencia
 
 public class BicicletaDAOImplementation implements BicicletaDAO {
 	
@@ -20,7 +28,11 @@ public class BicicletaDAOImplementation implements BicicletaDAO {
 		return instancia;
 	}
 
+<<<<<<< HEAD
 	
+=======
+	@SuppressWarnings("unchecked")
+>>>>>>> Persistencia
 	@Override
 	public void create(Bicicleta bicicleta) {
 		Session session = SessionFactoryService.get().openSession();
@@ -30,7 +42,11 @@ public class BicicletaDAOImplementation implements BicicletaDAO {
 		session.close();
 	}
 
+<<<<<<< HEAD
 	
+=======
+	@SuppressWarnings("unchecked")
+>>>>>>> Persistencia
 	@Override
 	public Bicicleta read(String id) {
 		Session session = SessionFactoryService.get().openSession();
@@ -41,7 +57,11 @@ public class BicicletaDAOImplementation implements BicicletaDAO {
 		return b;
 	}
 
+<<<<<<< HEAD
 	
+=======
+	@SuppressWarnings("unchecked")
+>>>>>>> Persistencia
 	@Override
 	public void update(Bicicleta bicicleta) {
 		Session session = SessionFactoryService.get().openSession();
@@ -51,7 +71,11 @@ public class BicicletaDAOImplementation implements BicicletaDAO {
 		session.close();
 	}
 
+<<<<<<< HEAD
 
+=======
+	@SuppressWarnings("unchecked")
+>>>>>>> Persistencia
 	@Override
 	public void delete(Bicicleta bicicleta) {
 		Session session = SessionFactoryService.get().openSession();
@@ -71,4 +95,8 @@ public class BicicletaDAOImplementation implements BicicletaDAO {
 		session.close();
 		return bicis;
 	}
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> Persistencia
