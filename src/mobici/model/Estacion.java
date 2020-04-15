@@ -117,10 +117,8 @@ public class Estacion implements Serializable {
 		return true;
 	}
 
-	//ToString
 	@Override
 	public String toString() {
-		return "Estacion [id=" + id + ", latitud=" + latitud + ", longitud=" + longitud + ", capacidad="
-				+ capacidad + ", anclajes=" + anclajes + "]";
+		return "Estacion [id=" + id + ", latitud=" + latitud + ", longitud=" + longitud + ", capacidad=" + capacidad + "]";
 	}
 }
