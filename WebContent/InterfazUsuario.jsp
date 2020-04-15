@@ -1,53 +1,67 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Bienvenido, Usuario</title>
+<title>mobiCi</title>
+<%@ include file = "NavbarRegistrado.jsp" %>
+
+<style>
+
+#derecha {
+	float: right;
+	margin-top: 150px;
+	margin-right: 300px;
+}
+th {
+	border: 1px solid !important;
+	background-color: #A9A9A9;
+}
+
+td.td{
+	border: 1px solid !importante;
+	
+}
+
+iframe{
+	float: left;
+	margin-top: 150px;
+	margin-left: 00px;;
+}
+</style>
+
 </head>
 <body>
-	<h2>Acciones del usuario</h2>
-	<p>Aqui deberia ir la navbar</p>
-	<p>Salir de la aplicacion</p>
-	<form action="FormLogoutServlet">
-		<button type="submit">Salir</button>
-	</form>
-	<table>
-		<tr>
-			<td>
-				<iframe src="https://www.google.com/maps/d/u/0/embed?mid=1rMDFcbZ1U-fNw5k36MjqkNnu6u8mUvGK" width="640" height="480"></iframe>
-			</td>
-			<td>
-				<table>
+
+
+
+<div id = "derecha">
+
+				<table border="1">
 					<tr>
-						<p>Bienvenido, usuario</p>
-						<p>Su nombre es ${usuario.nombre}</p>
-					</tr>
-					<tr>
-						<p>Reserva Actual</p>
-						<p>Aqui ira la reserva actual del cliente</p>
-					</tr>
-					<tr>
-						<table>
+						<table border="1">
 							<tr>
-								<td>Estacion</td>
-								<td>Ir a</td>
+								<th>Estacion</th>
+								<th>Ir a</th>
 							</tr>
 							<c:forEach items="${estaciones}" var="estacioni">
 							<tr>
 								<td>${estacioni.id}</td>
 								<td>
-									<td><%@ include file="FormEstacion.jsp"%></td>
+									<form action="FormInterfazUsuarioServlet">
+										<button type="submit" name="id" value=${estacioni.id}>Ir</button>
+									</form>
 								</td>
 							</c:forEach>
 						</table>
 					</tr>
 				</table>
-			</td>
-		</tr>
-	</table>
+						
+	</div>
+	<div class= "mapa">
+	<iframe src="https://www.google.com/maps/d/u/0/embed?mid=1rMDFcbZ1U-fNw5k36MjqkNnu6u8mUvGK"width="600" height="350" style="border: 0;" aria-hidden="false"
+		tabindex="0"></iframe></div>
 </body>
 </html>
