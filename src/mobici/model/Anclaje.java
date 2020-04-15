@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 package mobici.model;
-=======
-package model;
->>>>>>> Persistencia
 
 import java.io.Serializable;
 
@@ -132,8 +128,4 @@ public class Anclaje implements Serializable {
 	}
 	
 	
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> Persistencia

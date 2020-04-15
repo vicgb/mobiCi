@@ -43,10 +43,11 @@ public class LoginServlet extends HttpServlet {
 		if( ADMIN_EMAIL.equals(email) && ADMIN_PASSWORD.equals(password) ) {
 			req.getSession().setAttribute("admin", true);
 			req.getSession().setAttribute("usuarios", usuarios);
-			//req.getSession().setAttribute("tfgs", tfgs);
 			getServletContext().getRequestDispatcher("/InterfazAdmin.jsp").forward(req,resp);
 		} else if ( null != usuario ) {
+			List<Estacion> estaciones = (List<Estacion>) EstacionDAOImplementation.getInstancia().readAll();
 			req.getSession().setAttribute("email", usuario);
+			req.getSession().setAttribute("estaciones", estaciones);
 			getServletContext().getRequestDispatcher("/InterfazUsuario.jsp").forward(req,resp);
 		
 		} else {

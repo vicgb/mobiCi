@@ -1,17 +1,10 @@
-<<<<<<< HEAD
 package mobici.model;
 
 import java.io.Serializable;
 
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-=======
-package model;
 
-import java.io.Serializable;
 
->>>>>>> Persistencia
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -22,18 +15,11 @@ public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	//Cada usuario se identifica por su email
-<<<<<<< HEAD
 	
 	@Id
-    @Basic(optional = false)
-    @Column(name = "email",unique=true, nullable = false)
 	private String email;
-=======
-	@Id
-	private String email;
-
-	//Resto de atributos
->>>>>>> Persistencia
+	
+	//Resto de parametros
 	private String nombre;
 	private String apellido1;
 	private String apellido2;
@@ -43,17 +29,8 @@ public class Usuario implements Serializable {
 	private String fechaCadu;
 	private String cvv;
 	private String password;
-<<<<<<< HEAD
 	private String repPassword;
-	
-=======
 	private EstadoUsuario estadoUsuario;
-
-	//Constructor
-	public Usuario() {
-		super();
-	}
->>>>>>> Persistencia
 
 	//Geters y Seters
 	public String getEmail() {
@@ -135,7 +112,6 @@ public class Usuario implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-<<<<<<< HEAD
 
 	public String getRepPassword() {
 		return repPassword;
@@ -145,17 +121,14 @@ public class Usuario implements Serializable {
 		this.repPassword = repPassword;
 	}
 	
-=======
-	
 	public EstadoUsuario getEstadoUsuario() {
 		return estadoUsuario;
 	}
-	
+
 	public void setEstadoUsuario(EstadoUsuario estadoUsuario) {
 		this.estadoUsuario = estadoUsuario;
 	}
 
->>>>>>> Persistencia
 	//HashCode y Equals
 	@Override
 	public int hashCode() {
@@ -171,10 +144,6 @@ public class Usuario implements Serializable {
 		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
 		result = prime * result + ((numTarjeta == null) ? 0 : numTarjeta.hashCode());
 		result = prime * result + ((telefono == null) ? 0 : telefono.hashCode());
-<<<<<<< HEAD
-=======
-		result = prime * result + ((estadoUsuario == null) ? 0 : estadoUsuario.hashCode());
->>>>>>> Persistencia
 		return result;
 	}
 
@@ -237,14 +206,11 @@ public class Usuario implements Serializable {
 				return false;
 		} else if (!telefono.equals(other.telefono))
 			return false;
-<<<<<<< HEAD
-=======
-		if (estadoUsuario == null) {
-			if (other.estadoUsuario!= null)
-				return false;
-		} else if (!estadoUsuario.equals(other.estadoUsuario))
+		if (repPassword == null) {
+			if(other.repPassword != null)
 			return false;
->>>>>>> Persistencia
+		} else if (!repPassword.contentEquals(other.repPassword))
+			return false;
 		return true;
 	}
 
@@ -253,14 +219,9 @@ public class Usuario implements Serializable {
 	public String toString() {
 		return "Usuario [email=" + email + ", nombre=" + nombre + ", apellido1=" + apellido1 + ", apellido2="
 				+ apellido2 + ", telefono=" + telefono + ", dni=" + dni + ", numTarjeta=" + numTarjeta + ", fechaCadu="
-<<<<<<< HEAD
 				+ fechaCadu + ", cvv=" + cvv + ", password=" + password + "]";
 	}
 
 	
 	
-=======
-				+ fechaCadu + ", cvv=" + cvv + ", password=" + password + ", estadoUsuario=" + estadoUsuario + "]";
-	}
->>>>>>> Persistencia
 }

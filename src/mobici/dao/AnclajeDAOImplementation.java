@@ -1,38 +1,25 @@
-<<<<<<< HEAD
 package mobici.dao;
-=======
-package dao;
->>>>>>> Persistencia
 
 import java.util.Collection;
 import java.util.List;
 
 import org.hibernate.Session;
 
-<<<<<<< HEAD
 import mobici.model.Anclaje;
-=======
-import model.Anclaje;
->>>>>>> Persistencia
 
 public class AnclajeDAOImplementation implements AnclajeDAO {
-	
-	private static  AnclajeDAOImplementation instancia = null;
-	
+
+	private static AnclajeDAOImplementation instancia = null;
+
 	private AnclajeDAOImplementation() {
 	}
 
 	public static AnclajeDAOImplementation getInstancia() {
-		if( null == instancia ) 
+		if (null == instancia)
 			instancia = new AnclajeDAOImplementation();
 		return instancia;
 	}
 
-<<<<<<< HEAD
-
-=======
-	@SuppressWarnings("unchecked")
->>>>>>> Persistencia
 	@Override
 	public void create(Anclaje anclaje) {
 		Session session = SessionFactoryService.get().openSession();
@@ -42,26 +29,16 @@ public class AnclajeDAOImplementation implements AnclajeDAO {
 		session.close();
 	}
 
-<<<<<<< HEAD
-	
-=======
-	@SuppressWarnings("unchecked")
->>>>>>> Persistencia
 	@Override
 	public Anclaje read(String id) {
 		Session session = SessionFactoryService.get().openSession();
 		session.beginTransaction();
-		Anclaje a =session.get(Anclaje.class, id);
+		Anclaje a = session.get(Anclaje.class, id);
 		session.getTransaction().commit();
 		session.close();
 		return a;
 	}
 
-<<<<<<< HEAD
-	
-=======
-	@SuppressWarnings("unchecked")
->>>>>>> Persistencia
 	@Override
 	public void update(Anclaje anclaje) {
 		Session session = SessionFactoryService.get().openSession();
@@ -71,11 +48,6 @@ public class AnclajeDAOImplementation implements AnclajeDAO {
 		session.close();
 	}
 
-<<<<<<< HEAD
-	
-=======
-	@SuppressWarnings("unchecked")
->>>>>>> Persistencia
 	@Override
 	public void delete(Anclaje anclaje) {
 		Session session = SessionFactoryService.get().openSession();
@@ -96,8 +68,4 @@ public class AnclajeDAOImplementation implements AnclajeDAO {
 		return ancs;
 	}
 
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> Persistencia

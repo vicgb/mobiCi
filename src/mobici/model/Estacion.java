@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 package mobici.model;
-=======
-package model;
->>>>>>> Persistencia
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -127,8 +123,4 @@ public class Estacion implements Serializable {
 		return "Estacion [id=" + id + ", latitud=" + latitud + ", longitud=" + longitud + ", capacidad="
 				+ capacidad + ", anclajes=" + anclajes + "]";
 	}
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> Persistencia

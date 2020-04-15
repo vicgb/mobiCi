@@ -28,7 +28,7 @@ label{
 	<div>
 	<label>Usuario</label>
 	<br>
-	<input type="email" name="email" placeholder = "Introduzca su email">
+	<input type="input" name="email" placeholder = "Introduzca su email">
 	<div>
 	<label>Contraseña</label>
 	<br>
