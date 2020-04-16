@@ -14,5 +14,3 @@ import java.util.Collection;
 		public Collection<Usuario> readAll();
 		public Usuario login(String email, String password);
 	}
-
-

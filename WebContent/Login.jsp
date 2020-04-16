@@ -5,19 +5,16 @@
 <head>
 <meta charset="UTF-8">
 <style>
-
 form.formularioLogin{
-	margin-top: 50px;
+	margin-top: 150px;
 	margin-left: 500px;
 	border: 1px solid !important;
 	float:left;
 	padding: 30px;
 }
-
 button{
 	margin-top: 10px;
 }
-
 label{
 	margin-top: 10px;
 }

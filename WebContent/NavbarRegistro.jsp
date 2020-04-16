@@ -43,6 +43,8 @@ h3{
 	margin-top: 15px;
 }
 
+
+
 </style>
 
 <header>
@@ -50,9 +52,8 @@ h3{
 	<nav>
 	
 	<ul>
-		<li><a href = "FormLogoutServlet">Salir</a></li>
-		<li><a href = "index.jsp">Perfil</a></li>
-		
+		<li><a href = "index.jsp">Atrás</a></li>
+				
 	</ul>
 	</nav>
 </header>

@@ -13,4 +13,3 @@ public interface AnclajeDAO {
 	public Collection<Anclaje> readAll();
 
 }
-

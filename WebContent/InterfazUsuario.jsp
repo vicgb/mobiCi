@@ -9,8 +9,7 @@
 <title>Bienvenido, Usuario</title>
 </head>
 <body>
-	<h2>Acciones del usuario</h2>
-	<p>Aqui deberia ir la navbar</p>
+	<%@ include file="NavbarRegistrado.jsp"%>
 	<p>Salir de la aplicacion</p>
 	<form action="FormLogoutServlet">
 		<button type="submit">Salir</button>

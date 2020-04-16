@@ -5,27 +5,22 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
-<%@ include file = "Navbar.jsp" %>
+<%@ include file = "NavbarRegistro.jsp" %>
 <style>
-
 #formularioRegistro{
-	margin-top: 50px;
+	margin-top: 150px;
 	margin-left: 500px;
 	border: 1px solid !important;
 	float: left;
 	padding: 30px;
 }
-
 label{
 	padding: 5px;
 	margin: 5px;
 }
-
 input{
 	margin: 5px;
 }
-
-
 </style>
 <body>
 
