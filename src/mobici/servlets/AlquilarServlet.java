@@ -36,6 +36,7 @@ public class AlquilarServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		Anclaje anclaje = AnclajeDAOImplementation.getInstancia().read(req.getParameter("anclaje"));
 		Estacion estacion = EstacionDAOImplementation.getInstancia().read(req.getParameter("estacion"));
+		int disponibles = Integer.parseInt(req.getParameter("disponibles"));
 		Bicicleta bicicleta= BicicletaDAOImplementation.getInstancia().read(anclaje.getBicicleta());
 		anclaje.setEstado(EstadoAnclaje.LIBRE);
 		anclaje.setBicicleta(null);
@@ -43,10 +44,11 @@ public class AlquilarServlet extends HttpServlet {
 		AnclajeDAOImplementation.getInstancia().update(anclaje);
 		BicicletaDAOImplementation.getInstancia().update(bicicleta);
 		
-
+		disponibles--;
 		req.getSession().setAttribute("estacion", estacion);
 		req.getSession().setAttribute("anclaje", anclaje);
 		req.getSession().setAttribute("bicicleta", bicicleta);
+		req.getSession().setAttribute("disponibles", disponibles);
 		req.getSession().setAttribute("alquilado", true);
 		getServletContext().getRequestDispatcher("/Estacion.jsp").forward(req,res);
 	}

@@ -39,20 +39,11 @@ public class estacionServlet extends HttpServlet {
 		int i=0;
 		while(i< anclajes.size()) {
 			Anclaje anclaje = anclajes.get(i);
-			//System.out.println("AAAAAAAAAAAAAAAAAA");
-			//System.out.println(anclaje.getId());
 			if(anclaje.getIdEstacion().equals(estacion.getId()) && anclaje.getEstado().equals(EstadoAnclaje.OCUPADO)) {
 				anclajesDisponibles.add(anclaje);
 			}
 			i++;
 		}
-		//for(Anclaje anclaje : anclajes) {
-			//System.out.println("AAAAAAAAAAAAAAAAAA");
-			//System.out.println(anclaje.getId());
-		//	if(anclaje.getIdEstacion().equals(estacion.getId()) && anclaje.getEstado().equals(EstadoAnclaje.OCUPADO)) {
-		//		anclajesDisponibles.add(anclaje);
-		//	}
-		//}
 		req.getSession().setAttribute("estacion", estacion);
 		req.getSession().setAttribute("anclajes", anclajes);
 		int disponibles = anclajesDisponibles.size();
