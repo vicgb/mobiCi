@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,9 +34,17 @@ iframe{
 	margin-left: 50px;
 }
 
+#alquiler{
+	float: right;
+	margin-right: -25px;
+}
+
 </style>
 </head>
 <body>
+
+	
+	
 	<div id = "derecha">
 		
 		
@@ -61,9 +70,11 @@ iframe{
 		<br>
 		<br>
 		<br>
+		
+		<div id = "alquiler">
 		<c:choose>
 			<c:when test="${alquilado == true}">
-			Usted ha alquilado la bicicleta ${bicicleta.id}, en la estacion ${estacion.id}, en el anclaje ${anclaje.id} }
+			Usted ha alquilado la bicicleta ${bicicleta.id}, en la estacion ${estacion.id}, en el anclaje ${anclaje.id} 
 			</c:when>
 			<c:otherwise>
 				<c:choose>
@@ -80,14 +91,22 @@ iframe{
 				</c:choose>
 			</c:otherwise>
 		</c:choose>
-		
+		</div>
 		
 	</div>
 	<div class= "mapa">
-	<iframe
-		src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3036.2185179375506!2d-3.7299398852106176!3d40.44830026164382!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd42283487cc4deb%3A0xe7a4244a657905e9!2sAv.%20Complutense%2C%2028040%20Madrid!5e0!3m2!1ses!2ses!4v1586684352389!5m2!1ses!2ses"
-		width="600" height="350" style="border: 0;" aria-hidden="false"
-		tabindex="0"></iframe></div>
-
+	<c:choose>
+	
+		<c:when test = "${fn: substring(estacion.id, 0 ,7) == 'Plaza 7' }" >
+		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3037.509441857437!2d-3.6906446852569674!3d40.41971697936475!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDI1JzExLjAiTiAzwrA0MScxOC40Ilc!5e0!3m2!1ses!2ses!4v1587029654550!5m2!1ses!2ses" width="600" height="450" style="border:0;"  aria-hidden="false" tabindex="0"></iframe>
+		</c:when>
+		<c:when test="${fn: substring(estacion.id, 0 ,8) == 'Parque 1' }">
+		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3037.902576264694!2d-3.691084685257315!3d40.411008979365846!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDI0JzM5LjYiTiAzwrA0MScyMC4wIlc!5e0!3m2!1ses!2ses!4v1587030020824!5m2!1ses!2ses" width="600" height="450" style="border:0;"  aria-hidden="false" tabindex="0"></iframe>
+		</c:when>
+		<c:otherwise>
+		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3037.7680028970954!2d-3.6952886852572164!3d40.41398997936546!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDI0JzUwLjQiTiAzwrA0MSczNS4yIlc!5e0!3m2!1ses!2ses!4v1587030087981!5m2!1ses!2ses" width="600" height="450"  style="border:0;"  aria-hidden="false" tabindex="0"></iframe>
+		</c:otherwise>
+	</c:choose>
+	</div>
 </body>
 </html>
