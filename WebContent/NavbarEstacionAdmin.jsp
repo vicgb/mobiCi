@@ -52,8 +52,7 @@ h3{
 	<nav>
 	
 	<ul>
-		<li><a href = "FormularioRegistro.jsp">Registro</a></li>
-		<li><a href = "LoginAdmin.jsp">Acceso admin</a>
+		<li><a href = "InterfazAdmin.jsp">Atrás</a></li>
 				
 	</ul>
 	</nav>

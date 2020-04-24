@@ -38,7 +38,7 @@ iframe {
 
 	<div id="derecha">
 
-		<tr>
+
 			<table border="1">
 				<tr>
 					<th>Estacion</th>
@@ -49,10 +49,11 @@ iframe {
 						<td>${estacioni.id}</td>
 						<td><%@ include file="FormEstacion.jsp"%>
 						</td>
+					</tr>
 				</c:forEach>
-			</table>
-		</tr>
-
+			
+				
+</table>
 	</div>
 	<div class="mapa">
 		<iframe

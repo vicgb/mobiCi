@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>mobiCi</title>
-<%@ include file="NavbarEstacion.jsp"%>
+<%@ include file="NavbarEstacionAdmin.jsp"%>
 <style>
 
 #derecha {
@@ -64,36 +64,22 @@ iframe{
 				<td class = "td">  (${estacion.latitud}, ${estacion.longitud})</td>
 				<td class = "td"> ${disponibles}</td>
 				</tr>
-		
+				
 
 		</table>
+		
 		<br>
 		<br>
 		<br>
 		
-		<div id = "alquiler">
-		<c:choose>
-			<c:when test="${alquilado == true}">
-			Usted ha alquilado la bicicleta ${bicicleta.id}, en la estacion ${estacion.id}, en el anclaje ${anclaje.id} 
-			</c:when>
-			<c:otherwise>
-				<c:choose>
-					<c:when test="${disponibles >= 1}">
-						<%@ include file="FormAlquilar.jsp"%>
-						<br />
-					</c:when>
-					
-					<c:otherwise>
-						No hay bicicletas disponibles
-						<br />
-					</c:otherwise>
-				
-				</c:choose>
-			</c:otherwise>
-		</c:choose>
+		<button>Añadir anclaje</button>
+		<button>Eliminar anclaje</button>
 		</div>
+		<div>
 		
-	</div>
+		
+		</div>
+	
 	<div class= "mapa">
 	<c:choose>
 	
