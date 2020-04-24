@@ -17,20 +17,19 @@ import mobici.model.*;
 /**
  * Servlet implementation class FormLoginServlet
  */
-@WebServlet("/LoginServlet")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/LoginAdminServlet")
+public class LoginAdminServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public LoginServlet() {
+	public LoginAdminServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	private final String ADMIN_EMAIL = "root";
-	private final String ADMIN_PASSWORD = "root";
+	
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -38,22 +37,18 @@ public class LoginServlet extends HttpServlet {
 		String email = req.getParameter("email");
 		String password = req.getParameter("password");
 
-		List<Usuario> usuarios = (List<Usuario>) UsuarioDAOImplementation.getInstancia().readAll();
-		Usuario usuario = UsuarioDAOImplementation.getInstancia().login(email, password);
+		List<Admin> administradores = (List<Admin>) AdminDAOImplementation.getInstancia().readAll();
+		Admin admin = AdminDAOImplementation.getInstancia().login(email, password);
 		
-		if( ADMIN_EMAIL.equals(email) && ADMIN_PASSWORD.equals(password) ) {
-			req.getSession().setAttribute("admin", true);
-			req.getSession().setAttribute("usuarios", usuarios);
-			getServletContext().getRequestDispatcher("/InterfazAdmin.jsp").forward(req,resp);
-		} else if ( null != usuario ) {
+		 if( null != admin ) {
 			List<Estacion> estaciones = (List<Estacion>) EstacionDAOImplementation.getInstancia().readAll();
-			req.getSession().setAttribute("email", usuario);
+			req.getSession().setAttribute("emailAdmin", admin); //o email
 			req.getSession().setAttribute("estaciones", estaciones);
-			getServletContext().getRequestDispatcher("/InterfazUsuario.jsp").forward(req,resp);
+			getServletContext().getRequestDispatcher("/InterfazAdmin.jsp").forward(req,resp);
 		
 		} else {
 			JOptionPane.showMessageDialog(null, "El login o la contraseña son incorrectos");
-			getServletContext().getRequestDispatcher("/index.jsp").forward(req,resp);
+			getServletContext().getRequestDispatcher("/LoginAdmin.jsp").forward(req,resp);
 		}
 	}
 

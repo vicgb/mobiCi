@@ -8,83 +8,83 @@ import javax.persistence.Query;
 
 import org.hibernate.Session;
 
-import mobici.model.Usuario;
+import mobici.model.Admin;
 
-public class UsuarioDAOImplementation implements UsuarioDAO {
+public class AdminDAOImplementation implements AdminDAO {
 
-	private static UsuarioDAOImplementation instancia = null;
+	private static AdminDAOImplementation instancia = null;
 
-	private UsuarioDAOImplementation() {
+	private AdminDAOImplementation() {
 	}
 
-	public static UsuarioDAOImplementation getInstancia() {
+	public static AdminDAOImplementation getInstancia() {
 		if (null == instancia)
-			instancia = new UsuarioDAOImplementation();
+			instancia = new AdminDAOImplementation();
 		return instancia;
 	}
 
 	@Override
-	public void create(Usuario usuario) {
+	public void create(Admin admin) {
 		Session session = SessionFactoryService.get().openSession();
 		session.beginTransaction();
-		session.save(usuario);
+		session.save(admin);
 		session.getTransaction().commit();
 		session.close();
 	}
 
 	@Override
-	public Usuario login(String email, String password) {
+	public Admin login(String email, String password) {
 		Session session = SessionFactoryService.get().openSession();
 		session.beginTransaction();
-		Usuario u = null;
-		Query q = session.createQuery("select u from Usuario u where u.email = :email and u.password = :password");
+		Admin a = null;
+		Query q = session.createQuery("select u from Admin u where u.email = :email and u.password = :password");
 		q.setParameter("email", email);
 		q.setParameter("password", password);
 
 		@SuppressWarnings("unchecked")
-		List<Usuario> usus = q.getResultList();
-		if (usus.size() > 0)
-			u = (Usuario) (q.getResultList().get(0));
+		List<Admin> ads = q.getResultList();
+		if (ads.size() > 0)
+			a = (Admin) (q.getResultList().get(0));
 		session.getTransaction().commit();
 		session.close();
-		return u;
+		return a;
 	}
 
 	@Override
-	public Collection<Usuario> readAll() {
+	public Collection<Admin> readAll() {
 		Session session = SessionFactoryService.get().openSession();
 		session.beginTransaction();
 		@SuppressWarnings("unchecked")
-		List<Usuario> usus = session.createQuery("from Usuario").list();
+		List<Admin> ads = session.createQuery("from Admin").list();
 		session.getTransaction().commit();
 		session.close();
-		return usus;
+		return ads;
 	}
 
 	@Override
-	public Usuario read(String email) {
+	public Admin read(String email) {
 		Session session = SessionFactoryService.get().openSession();
 		session.beginTransaction();
-		Usuario u = session.get(Usuario.class, email);
+		Admin a = session.get(Admin.class, email);
 		session.getTransaction().commit();
 		session.close();
-		return u;
+		return a;
 	}
 
 	@Override
-	public void update(Usuario usuario) {
+	public void update(Admin admin) {
 		Session session = SessionFactoryService.get().openSession();
 		session.beginTransaction();
-		session.saveOrUpdate(usuario);
+		session.saveOrUpdate(admin);
 		session.getTransaction().commit();
 		session.close();
 	}
 
 	@Override
-	public void delete(Usuario usuario) {
+	public void delete(Admin admin) {
 		Session session = SessionFactoryService.get().openSession();
 		session.beginTransaction();
-		session.delete(usuario);
+		session.delete(admin);
 		session.getTransaction().commit();
 		session.close();
 	}

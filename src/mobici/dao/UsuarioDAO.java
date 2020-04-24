@@ -2,6 +2,7 @@ package mobici.dao;
 import mobici.model.*;
 
 
+
 import java.util.Collection;
 	//Aqui se van a definir todas las cosas que "puede hacer" un usuario
 

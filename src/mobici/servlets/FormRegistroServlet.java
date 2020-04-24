@@ -3,6 +3,7 @@ package mobici.servlets;
 import java.io.IOException;
 
 
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import mobici.dao.UsuarioDAOImplementation;
 import mobici.model.Usuario;
+import javax.swing.JOptionPane;
 
 @WebServlet("/FormRegistroServlet")
 public class FormRegistroServlet extends HttpServlet {
@@ -53,11 +55,13 @@ public class FormRegistroServlet extends HttpServlet {
 			usuario.setFechaCadu(fechaCadu);
 			usuario.setCvv(cvv);
 			usuario.setPassword(password);
+			usuario.setRepPassword(repPassword);
 			UsuarioDAOImplementation.getInstancia().create(usuario);
-			resp.sendRedirect(req.getContextPath() + "/nuevoUsuario.jsp");
+			JOptionPane.showMessageDialog(null, "El usuario se ha registrado correctamente");
+			resp.sendRedirect(req.getContextPath() + "/index.jsp");
 		
 		}else {
-			// Aquí irá una alerta que salte cuando las contraseñas no coincidan.
+			JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden.");
 			resp.sendRedirect(req.getContextPath() + "/FormularioRegistro.jsp");
 	
 }
