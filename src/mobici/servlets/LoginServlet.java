@@ -1,6 +1,9 @@
 package mobici.servlets;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -9,9 +12,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-import mobici.dao.*;
-import mobici.model.*;
+import mobici.dao.EstacionDAOImplementation;
+import mobici.dao.UsuarioDAOImplementation;
+import mobici.dao.ViajeDAOImplementation;
+import mobici.model.Estacion;
+import mobici.model.Usuario;
+import mobici.model.Viaje;
 
 /**
  * Servlet implementation class FormLoginServlet
@@ -46,7 +52,22 @@ public class LoginServlet extends HttpServlet {
 			getServletContext().getRequestDispatcher("/InterfazAdmin.jsp").forward(req,resp);
 		} else if ( null != usuario ) {
 			List<Estacion> estaciones = (List<Estacion>) EstacionDAOImplementation.getInstancia().readAll();
-			req.getSession().setAttribute("email", usuario);
+			
+			List<Viaje> viajes = (List<Viaje>)  ViajeDAOImplementation.getInstancia().readAll();
+			Viaje viajeActual = null;
+			int i=0;
+			while(i< viajes.size()) {
+				Viaje viaje= viajes.get(i);
+				if(viaje.getIdUsuario().equals(email) && viaje.getFinDate() == null) {
+					//El usuario está en un viaje y no ha acabado
+					viajeActual = viaje;
+					req.getSession().setAttribute("viaje", viajeActual);
+					break;
+				}
+				i++;
+			}
+			
+			req.getSession().setAttribute("email", email);
 			req.getSession().setAttribute("estaciones", estaciones);
 			getServletContext().getRequestDispatcher("/InterfazUsuario.jsp").forward(req,resp);
 		

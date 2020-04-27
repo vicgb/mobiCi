@@ -37,20 +37,38 @@ iframe {
 
 
 	<div id="derecha">
-
 		<tr>
 			<table border="1">
 				<tr>
 					<th>Estacion</th>
 					<th>Ir a</th>
+				<c:choose><c:when test="${not empty viaje}"><th>Acabar viaje</th></c:when></c:choose>
 				</tr>
 				<c:forEach items="${estaciones}" var="estacioni">
 					<tr>
 						<td>${estacioni.id}</td>
-						<td><%@ include file="FormEstacion.jsp"%>
-						</td>
+						<td><%@ include file="FormEstacion.jsp"%></td>	
+			   			<c:choose><c:when test="${not empty viaje}"> <td><%@ include file="FormTerminarViaje.jsp"%></td>  </c:when></c:choose>
+						<!-- <if test="${not empty viaje}"><td><%@ include file="FormTerminarViaje.jsp"%></td></if> -->
 				</c:forEach>
 			</table>
+			<c:choose>
+			   <c:when test="${not empty viajeTerminado}">
+				Usted ha terminado el viaje <br>
+				 desde el anclaje ${viajeTerminado.anclajeInicio.id} <br>
+				 hasta el anclaje ${viajeTerminado.anclajeFin.id} <br>
+				 comenzado a las ${viajeTerminado.inicioDate} <br>
+				 terminado a las ${viajeTerminado.finDate} <br>
+				 Coste del viaje: ${viajeTerminado.coste} <br>
+				</c:when>
+			   <c:when test="${not empty viaje}">
+				   Usted esta realizando un viaje desde el anclaje ${viaje.anclajeInicio.id} comenzado a las ${viaje.inicioDate} <br>
+				   <c:if test="${not empty error}">
+						${error} <br>
+					</c:if>
+			   </c:when>
+			   <c:otherwise></c:otherwise> 
+			</c:choose>
 		</tr>
 
 	</div>

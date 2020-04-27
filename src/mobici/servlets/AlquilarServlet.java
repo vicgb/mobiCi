@@ -11,11 +11,15 @@ import javax.servlet.http.HttpServletResponse;
 import mobici.dao.AnclajeDAOImplementation;
 import mobici.dao.BicicletaDAOImplementation;
 import mobici.dao.EstacionDAOImplementation;
+import mobici.dao.UsuarioDAOImplementation;
+import mobici.dao.ViajeDAOImplementation;
 import mobici.model.Anclaje;
 import mobici.model.Bicicleta;
 import mobici.model.Estacion;
 import mobici.model.EstadoAnclaje;
 import mobici.model.EstadoBici;
+import mobici.model.Usuario;
+import mobici.model.Viaje;
 
 /**
  * Servlet implementation class AlquilarServlet
@@ -34,16 +38,21 @@ public class AlquilarServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		System.out.println("email");
+		System.out.println(req.getParameter("email"));
 		Anclaje anclaje = AnclajeDAOImplementation.getInstancia().read(req.getParameter("anclaje"));
 		Estacion estacion = EstacionDAOImplementation.getInstancia().read(req.getParameter("estacion"));
-		int disponibles = Integer.parseInt(req.getParameter("disponibles"));
+		Usuario usuario = UsuarioDAOImplementation.getInstancia().read(req.getParameter("email"));
 		Bicicleta bicicleta= BicicletaDAOImplementation.getInstancia().read(anclaje.getBicicleta());
-		anclaje.setEstado(EstadoAnclaje.LIBRE);
-		anclaje.setBicicleta(null);
+
+		Viaje viaje = new Viaje(anclaje, usuario.getEmail(), bicicleta.getId());
+		ViajeDAOImplementation.getInstancia().create(viaje);
+		anclaje.liberarAnclaje();
 		bicicleta.setEstado(EstadoBici.VIAJANDO);
 		AnclajeDAOImplementation.getInstancia().update(anclaje);
 		BicicletaDAOImplementation.getInstancia().update(bicicleta);
 		
+		int disponibles = Integer.parseInt(req.getParameter("disponibles"));
 		disponibles--;
 		req.getSession().setAttribute("estacion", estacion);
 		req.getSession().setAttribute("anclaje", anclaje);

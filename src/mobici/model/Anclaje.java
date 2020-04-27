@@ -31,6 +31,11 @@ public class Anclaje implements Serializable {
 	public Anclaje() {
 		super();
 	}
+	
+	public void liberarAnclaje() {
+		this.setEstado(EstadoAnclaje.LIBRE);
+		this.setBicicleta(null);
+	}
 
 	//Geters y Seters
 	public String getId() {

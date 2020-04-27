@@ -45,7 +45,7 @@ public class estacionServlet extends HttpServlet {
 			i++;
 		}
 		req.getSession().setAttribute("estacion", estacion);
-		req.getSession().setAttribute("anclajes", anclajes);
+		req.getSession().setAttribute("email", req.getParameter("email"));
 		int disponibles = anclajesDisponibles.size();
 		req.getSession().setAttribute("disponibles", disponibles);
 		if(disponibles > 0) {			

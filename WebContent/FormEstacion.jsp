@@ -9,6 +9,7 @@
 <body>
 	<form action="estacionServlet" method="get">
 		<input type="hidden" name="estacion" value="${estacioni.id}" />
+		<input type="hidden" name="email" value="${email}" />
 		<button type="submit">Ver estacion</button>
 	</form>
 </body>

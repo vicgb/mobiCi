@@ -13,6 +13,7 @@
 		<input type="hidden" name="anclaje" value="${anclajeDisponible.id}" />
 		<input type="hidden" name="estacion" value="${estacion.id}" />
 		<input type="hidden" name="disponibles" value="${disponibles}" />
+		<input type="hidden" name=email value="${email}" />
 		<button type="submit">Alquilar bicicleta</button>
 	</form>
 
