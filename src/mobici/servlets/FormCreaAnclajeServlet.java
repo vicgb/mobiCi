@@ -9,10 +9,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.JOptionPane;
 
 import mobici.dao.AnclajeDAOImplementation;
 import mobici.dao.EstacionDAOImplementation;
 import mobici.model.Anclaje;
+import mobici.model.Bicicleta;
 import mobici.model.Estacion;
 import mobici.model.EstadoAnclaje;
 
@@ -31,28 +33,58 @@ public class FormCreaAnclajeServlet extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-    @Override
+   
+	@SuppressWarnings("unchecked")
+	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String id  = req.getParameter("id");
-		String idEstacion = req.getParameter("idEstacion");
-		Estacion estacion = EstacionDAOImplementation.getInstancia().read(idEstacion);
 		
-		if (null != estacion) {
-			Anclaje anclaje = new Anclaje();
-			anclaje.setId(id);
-			anclaje.setIdEstacion(idEstacion);
-			anclaje.setBicicleta(null);
-			anclaje.setEstado(EstadoAnclaje.LIBRE);
-			anclaje.setEstacion(estacion);
-
-			AnclajeDAOImplementation.getInstancia().create(anclaje);
-			List<Anclaje> la = new ArrayList<Anclaje>();
-			la.addAll((List<Anclaje>)req.getSession().getAttribute("anclajes"));
-			la.add (anclaje);
-			req.getSession().setAttribute("anclajes", la);
+	Estacion estacion = EstacionDAOImplementation.getInstancia().read(req.getParameter("estacionId"));
+		
+    	
+		String id = req.getParameter("id");
+		String bicicleta = req.getParameter("bicicleta");
+		EstadoAnclaje estado = EstadoAnclaje.LIBRE;
+		String estacionId = req.getParameter("estacionId");
+		
+		Anclaje anclaje = new Anclaje();
+		anclaje.setId(id);
+		anclaje.setBicicleta(bicicleta);
+		anclaje.setEstado(estado);
+		anclaje.setIdEstacion(estacionId);
+		
+		
+		
+		AnclajeDAOImplementation.getInstancia().create(anclaje);
+    	
+		
+		
+		
+		List<String> anclajesId = new ArrayList<String>();
+		List<String> anclajesBicicletas = new ArrayList<String>();
+		List<EstadoAnclaje> anclajesEstado = new ArrayList<EstadoAnclaje>();
+		List<Anclaje> anclajes =(List<Anclaje>) AnclajeDAOImplementation.getInstancia().readAll();
+		
+		int j=0;
+		while(j<anclajes.size()) {
+			Anclaje anclaje2 = anclajes.get(j);
+			if(estacion.getId().equals(anclaje2.getIdEstacion())){
+				anclajesId.add(anclaje2.getId());
+				anclajesBicicletas.add(anclaje2.getBicicleta());
+				anclajesEstado.add(anclaje2.getEstado());
+			}
+				j++;
+			
 		}
 		
-		getServletContext().getRequestDispatcher("/Admin.jsp").forward(req,resp);
+		req.getSession().setAttribute("estacion", estacion);
+		req.setAttribute("anclajesId", anclajesId);
+		req.setAttribute("anclajesBicicletas", anclajesBicicletas);
+		req.setAttribute("anclajesEstado", anclajesEstado);
+		
+		
+    
+    	JOptionPane.showMessageDialog(null, "Se ha creado correctamente");
+    	getServletContext().getRequestDispatcher("/EstacionAdmin.jsp").forward(req,resp);
 	}
 
 	/**
@@ -62,5 +94,4 @@ public class FormCreaAnclajeServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
 }

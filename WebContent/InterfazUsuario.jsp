@@ -38,15 +38,18 @@ iframe {
 
 	<div id="derecha">
 
+	<h2>Bienvenido: ${usuario.nombre}</h2>
 
 			<table border="1">
 				<tr>
-					<th>Estacion</th>
-					<th>Ir a</th>
+					<th>Estacion con ID</th>
+					<th>Dirección</th>
+					<th>Ir a </th>
 				</tr>
 				<c:forEach items="${estaciones}" var="estacioni">
 					<tr>
 						<td>${estacioni.id}</td>
+						<td>${estacioni.direccion}</td>
 						<td><%@ include file="FormEstacion.jsp"%>
 						</td>
 					</tr>

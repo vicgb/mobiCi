@@ -39,7 +39,7 @@ public class estacionServlet extends HttpServlet {
 		int i=0;
 		while(i< anclajes.size()) {
 			Anclaje anclaje = anclajes.get(i);
-			if(anclaje.getIdEstacion().equals(estacion.getId()) && anclaje.getEstado().equals(EstadoAnclaje.OCUPADO)) {
+			if(estacion.getId().equals(anclaje.getIdEstacion()) && anclaje.getEstado().equals(EstadoAnclaje.OCUPADO)) {
 				anclajesDisponibles.add(anclaje);
 			}
 			i++;

@@ -9,57 +9,49 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.JOptionPane;
 
 import mobici.dao.AnclajeDAOImplementation;
 import mobici.dao.EstacionDAOImplementation;
 import mobici.model.Anclaje;
 import mobici.model.Estacion;
 import mobici.model.EstadoAnclaje;
-import mobici.model.Usuario;
+
+
 
 /**
- * Servlet implementation class estacionServlet
+ * Servlet implementation class FormEliminaAnclajeServlet
  */
-@WebServlet("/estacionServletAdmin")
-public class estacionServletAdmin extends HttpServlet {
+@WebServlet("/FormEliminaAnclajeServlet")
+public class FormEliminaAnclajeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public estacionServletAdmin() {
+    public FormEliminaAnclajeServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
 
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		Estacion estacion = EstacionDAOImplementation.getInstancia().read(req.getParameter("estacion"));
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+    @Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    	Estacion estacion = EstacionDAOImplementation.getInstancia().read(req.getParameter("estacionId"));
 		
+    	
+		String anclajeID = req.getParameter("anclajeID");
+		Anclaje anclaje = AnclajeDAOImplementation.getInstancia().read(anclajeID);
 		
-		
-		List<Anclaje> anclajes =(List<Anclaje>) AnclajeDAOImplementation.getInstancia().readAll();
-		
-		List<Anclaje> anclajesDisponibles = new ArrayList<Anclaje>();
-		
+		AnclajeDAOImplementation.getInstancia().delete(anclaje);
+    	
 		
 		List<String> anclajesId = new ArrayList<String>();
 		List<String> anclajesBicicletas = new ArrayList<String>();
 		List<EstadoAnclaje> anclajesEstado = new ArrayList<EstadoAnclaje>();
-	
-		
-		
-		
-		
-		int i=0;
-		while(i< anclajes.size()) {
-			Anclaje anclaje = anclajes.get(i);
-			if(estacion.getId().equals(anclaje.getIdEstacion()) && anclaje.getEstado().equals(EstadoAnclaje.OCUPADO)) {
-				anclajesDisponibles.add(anclaje);
-			}
-			
-			i++;
-		}
+		List<Anclaje> anclajes =(List<Anclaje>) AnclajeDAOImplementation.getInstancia().readAll();
 		
 		int j=0;
 		while(j<anclajes.size()) {
@@ -69,31 +61,24 @@ public class estacionServletAdmin extends HttpServlet {
 				anclajesBicicletas.add(anclaje2.getBicicleta());
 				anclajesEstado.add(anclaje2.getEstado());
 			}
-			j++;
+				j++;
+			
 		}
 		
-		
-		
-	
 		req.getSession().setAttribute("estacion", estacion);
+		req.setAttribute("anclajesId", anclajesId);
+		req.setAttribute("anclajesBicicletas", anclajesBicicletas);
+		req.setAttribute("anclajesEstado", anclajesEstado);
 		
 		
-		req.getSession().setAttribute("anclajesId", anclajesId);
-		req.getSession().setAttribute("anclajesBicicletas", anclajesBicicletas);
-		req.getSession().setAttribute("anclajesEstado", anclajesEstado);
+    
+    	JOptionPane.showMessageDialog(null, "Se ha eliminado correctamente");
+    	getServletContext().getRequestDispatcher("/EstacionAdmin.jsp").forward(req,resp);
+	}
+		
+		
 		
 	
-		
-		
-		int disponibles = anclajesDisponibles.size();
-		
-		//Se le pasa el tamaño de la lista anclajesDisponibles al parametro disponibles
-		req.getSession().setAttribute("disponibles", disponibles);
-		if(disponibles > 0) {			
-			req.getSession().setAttribute("anclajeDisponible", anclajesDisponibles.get(0));
-		}
-		getServletContext().getRequestDispatcher("/EstacionAdmin.jsp").forward(req,res);
-}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

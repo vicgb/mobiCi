@@ -48,21 +48,24 @@ iframe{
 	<div id = "derecha">
 		
 		
-		<h2> Estas en la estación ${estacion.id}</h2>
+		<h2> Estas en la estación de ${estacion.direccion}</h2>
 		<br>
 		<br>
 		<table>
 				<tr>
-					<th> Estacion id </th>
+					<th> ID </th>
+					<th> Dirección</th>
 					<th> Capacidad </th>
 					<th> Coordenadas </th>
 					<th> Disponibles </th>
 				</tr>
 				<tr>
 				<td class = "td"> ${estacion.id} </td>
+				<td class = "td"> ${estacion.direccion}</td> 
 				<td class = "td"> ${estacion.capacidad}</td> 
 				<td class = "td">  (${estacion.latitud}, ${estacion.longitud})</td>
 				<td class = "td"> ${disponibles}</td>
+				
 				</tr>
 		
 

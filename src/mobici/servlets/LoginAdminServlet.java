@@ -42,8 +42,12 @@ public class LoginAdminServlet extends HttpServlet {
 		
 		 if( null != admin ) {
 			List<Estacion> estaciones = (List<Estacion>) EstacionDAOImplementation.getInstancia().readAll();
+			List<Anclaje> anclajes = (List<Anclaje>) AnclajeDAOImplementation.getInstancia().readAll();
+			
 			req.getSession().setAttribute("emailAdmin", admin); //o email
 			req.getSession().setAttribute("estaciones", estaciones);
+			req.getSession().setAttribute("anclajes", anclajes);
+			
 			getServletContext().getRequestDispatcher("/InterfazAdmin.jsp").forward(req,resp);
 		
 		} else {

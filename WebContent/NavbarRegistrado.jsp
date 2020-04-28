@@ -51,8 +51,8 @@ h3{
 	
 	<ul>
 		<li><a href = "FormLogoutServlet">Salir</a></li>
-		<!--  <li><a href = "index.jsp">Perfil</a></li>  -->
-		<li><a >Perfil</a>
+		 <li><a href = "FormPerfilServlet">Perfil</a></li>
+
 	</ul>
 	</nav>
 </header>
