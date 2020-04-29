@@ -12,7 +12,12 @@
 #derecha {
 	float: right;
 	margin-top: 150px;
-	margin-right: 300px;
+	margin-right: 50px;
+}
+
+table{
+	margin-top: 50px;
+	background-color: #ffff;
 }
 
 th {
@@ -28,6 +33,10 @@ iframe {
 	float: left;
 	margin-top: 150px;
 	margin-left: 00px;;
+}
+
+html{
+background-color: #f4f5f7;
 }
 </style>
 

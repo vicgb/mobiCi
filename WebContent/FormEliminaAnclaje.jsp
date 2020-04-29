@@ -12,6 +12,7 @@ div.formularioEliminar{
 	border: 1px solid !important;
 	margin-top:10px;
 	margin-right: 5px;
+	background-color: #ffff;
 }
 
 input{

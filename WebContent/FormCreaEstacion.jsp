@@ -11,17 +11,20 @@
 div.formularioCrear{
 	border: 1px solid !important;
 	margin-bottom: 10px;
+	background-color: #ffff;
 }
 
 input{
-margin-top: 5px;
+margin: 15px;
+
 }
 
 button{
 
 margin-top: 5px;
 padding: 5px;
-
+margin-left: 15px;
+margin-bottom: 5px;
 }
 
 </style>

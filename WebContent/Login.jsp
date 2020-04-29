@@ -11,12 +11,17 @@ form.formularioLogin{
 	border: 1px solid !important;
 	float:left;
 	padding: 30px;
+	background-color: #ffff;
 }
 button{
 	margin-top: 10px;
 }
-label{
+input{
 	margin-top: 10px;
+	margin-bottom: 10px;
+}
+html{
+background-color: #f4f5f7;
 }
 </style>
 <body>

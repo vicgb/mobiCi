@@ -41,6 +41,15 @@ div.izquierda2{
 float: left;
 margin-right: -50px;
 }
+
+
+html{
+background-color: #f4f5f7;
+}
+
+table{
+background-color: #ffff;
+}
 </style>
 
 </head>

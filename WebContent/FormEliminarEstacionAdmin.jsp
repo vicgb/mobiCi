@@ -11,6 +11,7 @@
 div.formularioEliminar{
 	border: 1px solid !important;
 	margin-top:10px;
+	background-color: #ffff;
 }
 </style>
 <body>
