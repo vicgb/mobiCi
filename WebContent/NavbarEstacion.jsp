@@ -42,7 +42,7 @@ h2{
 	margin-left: 15px;
 	margin-top: 15px;
 	margin-bottom: 5px;
-	font-family: Arial;
+	font-family: Arial ;
 }
 
 
@@ -54,8 +54,7 @@ h2{
 	<nav>
 	
 	<ul>
-		<li><a href = "FormularioRegistro.jsp">Registro</a></li>
-		<li><a href = "LoginAdmin.jsp">Acceso admin</a>
+		<li><a href = "InterfazUsuario.jsp">Atrás</a></li>
 				
 	</ul>
 	</nav>

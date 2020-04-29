@@ -5,9 +5,16 @@
 <title>mobiCi</title>
 <%@ include file = "Navbar.jsp" %>
 </head>
-<body>
+<style>
+html{
+background-color: #f4f5f7;
+}
 
-<div class = "formularioLogin">
+
+</style>
+<body>
+<div>
+<div class = "formularioLogin"></div>
 <%@ include file = "Login.jsp" %>
 </div>
 </body>

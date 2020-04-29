@@ -7,7 +7,7 @@
 </head>
 <style>
 header{
-	background: #A9A9A9 ;
+	background: rgba(0,0,0,.32) ;
 	width: 100%;
 	position: fixed;
 	z-index: 100;
@@ -37,22 +37,24 @@ nav ul li:hover{
 	background: #ffff;
 }
 
-h3{
+h2{
 	float: left;
 	margin-left: 15px;
 	margin-top: 15px;
+	margin-bottom: 5px;
+	font-family: Arial;
 }
 
 </style>
 
 <header>
-<h3>mobiCi</h3>
+<h2>mobiCi</h2>
 	<nav>
 	
 	<ul>
 		<li><a href = "FormLogoutServlet">Salir</a></li>
-		<!--  <li><a href = "index.jsp">Perfil</a></li>  -->
-		<li><a >Perfil</a>
+		 <li><a href = "FormPerfilServlet">Perfil</a></li>
+
 	</ul>
 	</nav>
 </header>

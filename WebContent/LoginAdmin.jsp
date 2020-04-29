@@ -4,6 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<title>mobiCi</title>
+<%@ include file = "NavbarRegistro.jsp" %>
+</head>
 <style>
 form.formularioLogin{
 	margin-top: 150px;
@@ -26,11 +29,15 @@ background-color: #f4f5f7;
 </style>
 <body>
 
-<form action ="LoginServlet" class = "formularioLogin">
+<form action ="LoginAdminServlet" class = "formularioLogin">
+
 	<div>
+	<h2>Administradores</h2>
+	</div>
+	<div></div>
 	<label>Usuario</label>
 	<br>
-	<input type="text" name="email" placeholder = "Introduzca su email">
+	<input type="text" name="email" placeholder = "Introduzca su email de admin">
 	<div>
 	<label>Contraseña</label>
 	<br>
@@ -39,7 +46,7 @@ background-color: #f4f5f7;
 	
 	<button type ="submit" class = "btn btn-success">Acceder</button>
 
-	</div>
+	
 	</form>
 </body>
 </html>

@@ -21,6 +21,6 @@
 		<mapping class="mobici.model.EstadoAnclaje" />
 		<mapping class="mobici.model.EstadoBici" />
 		<mapping class="mobici.model.Viaje" />
-		
+		<mapping class="mobici.model.Admin" />
 	</session-factory>
 </hibernate-configuration>

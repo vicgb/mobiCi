@@ -12,7 +12,12 @@
 #derecha {
 	float: right;
 	margin-top: 150px;
-	margin-right: 300px;
+	margin-right: 50px;
+}
+
+table{
+	margin-top: 50px;
+	background-color: #ffff;
 }
 
 th {
@@ -29,29 +34,37 @@ iframe {
 	margin-top: 150px;
 	margin-left: 00px;;
 }
+
+html{
+background-color: #f4f5f7;
+}
 </style>
 
 </head>
 <body>
 
 
+	<h2>Bienvenido: ${usuario.nombre}</h2>
 
 	<div id="derecha">
-		<tr>
 			<table border="1">
 				<tr>
-					<th>Estacion</th>
+					<th>Estacion con ID</th>
+					<th>Dirección</th>
 					<th>Ir a</th>
 				<c:choose><c:when test="${not empty viaje and empty viajeTerminado}"><th>Acabar viaje</th></c:when></c:choose>
 				</tr>
+
 				<c:forEach items="${estaciones}" var="estacioni">
 					<tr>
 						<td>${estacioni.id}</td>
+						<td>${estacioni.direccion}</td>
 						<td><%@ include file="FormEstacion.jsp"%></td>	
-			   			<c:choose><c:when test="${not empty viaje and empty viajeTerminado}"> <td><%@ include file="FormTerminarViaje.jsp"%></td>  </c:when></c:choose>
-						<!-- <if test="${not empty viaje}"><td><%@ include file="FormTerminarViaje.jsp"%></td></if> -->
-				</c:forEach>
+						<c:choose><c:when test="${not empty viaje and empty viajeTerminado}"> <td><%@ include file="FormTerminarViaje.jsp"%></td>  </c:when></c:choose>
+					</tr>
+					</c:forEach>
 			</table>
+			
 			<c:choose>
 			   <c:when test="${not empty viajeTerminado}">
 				Usted ha terminado el viaje <br>
@@ -69,8 +82,6 @@ iframe {
 			   </c:when>
 			   <c:otherwise></c:otherwise> 
 			</c:choose>
-		</tr>
-
 	</div>
 	<div class="mapa">
 		<iframe

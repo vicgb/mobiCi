@@ -7,12 +7,18 @@
 <title></title>
 <%@ include file = "NavbarRegistro.jsp" %>
 <style>
+
+html{
+background-color: #f4f5f7;
+}
+
 #formularioRegistro{
 	margin-top: 150px;
 	margin-left: 500px;
 	border: 1px solid !important;
 	float: left;
 	padding: 30px;
+	background-color: #ffff;
 }
 label{
 	padding: 5px;

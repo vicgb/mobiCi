@@ -14,50 +14,39 @@ import javax.swing.JOptionPane;
 import mobici.dao.AnclajeDAOImplementation;
 import mobici.dao.EstacionDAOImplementation;
 import mobici.model.Anclaje;
-import mobici.model.Bicicleta;
 import mobici.model.Estacion;
 import mobici.model.EstadoAnclaje;
 
+
+
 /**
- * Servlet implementation class FormCreaAnclajeServlet
+ * Servlet implementation class FormEliminaAnclajeServlet
  */
-@WebServlet("/FormCreaAnclajeServlet")
-public class FormCreaAnclajeServlet extends HttpServlet {
+@WebServlet("/FormEliminaAnclajeServlet")
+public class FormEliminaAnclajeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FormCreaAnclajeServlet() {
+    public FormEliminaAnclajeServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
 
-   
-	@SuppressWarnings("unchecked")
-	@Override
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+    @Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-	Estacion estacion = EstacionDAOImplementation.getInstancia().read(req.getParameter("estacionId"));
+    	Estacion estacion = EstacionDAOImplementation.getInstancia().read(req.getParameter("estacionId"));
 		
     	
-		String id = req.getParameter("id");
-		String bicicleta = req.getParameter("bicicleta");
-		EstadoAnclaje estado = EstadoAnclaje.LIBRE;
-		String estacionId = req.getParameter("estacionId");
+		String anclajeID = req.getParameter("anclajeID");
+		Anclaje anclaje = AnclajeDAOImplementation.getInstancia().read(anclajeID);
 		
-		Anclaje anclaje = new Anclaje();
-		anclaje.setId(id);
-		anclaje.setBicicleta(bicicleta);
-		anclaje.setEstado(estado);
-		anclaje.setIdEstacion(estacionId);
-		
-		
-		
-		AnclajeDAOImplementation.getInstancia().create(anclaje);
+		AnclajeDAOImplementation.getInstancia().delete(anclaje);
     	
-		
-		
 		
 		List<String> anclajesId = new ArrayList<String>();
 		List<String> anclajesBicicletas = new ArrayList<String>();
@@ -83,9 +72,13 @@ public class FormCreaAnclajeServlet extends HttpServlet {
 		
 		
     
-    	JOptionPane.showMessageDialog(null, "Se ha creado correctamente");
+    	JOptionPane.showMessageDialog(null, "Se ha eliminado correctamente");
     	getServletContext().getRequestDispatcher("/EstacionAdmin.jsp").forward(req,resp);
 	}
+		
+		
+		
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -94,4 +87,5 @@ public class FormCreaAnclajeServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
+
 }

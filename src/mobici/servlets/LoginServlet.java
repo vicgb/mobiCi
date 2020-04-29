@@ -11,13 +11,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.JOptionPane;
 
-import mobici.dao.EstacionDAOImplementation;
-import mobici.dao.UsuarioDAOImplementation;
-import mobici.dao.ViajeDAOImplementation;
-import mobici.model.Estacion;
-import mobici.model.Usuario;
-import mobici.model.Viaje;
+import mobici.dao.*;
+import mobici.model.*;
 
 /**
  * Servlet implementation class FormLoginServlet
@@ -49,6 +46,7 @@ public class LoginServlet extends HttpServlet {
 		if( ADMIN_EMAIL.equals(email) && ADMIN_PASSWORD.equals(password) ) {
 			req.getSession().setAttribute("admin", true);
 			req.getSession().setAttribute("usuarios", usuarios);
+			
 			getServletContext().getRequestDispatcher("/InterfazAdmin.jsp").forward(req,resp);
 		} else if ( null != usuario ) {
 			List<Estacion> estaciones = (List<Estacion>) EstacionDAOImplementation.getInstancia().readAll();
@@ -59,7 +57,7 @@ public class LoginServlet extends HttpServlet {
 			while(i< viajes.size()) {
 				Viaje viaje= viajes.get(i);
 				if(viaje.getIdUsuario().equals(email) && viaje.getFinDate() == null) {
-					//El usuario está en un viaje y no ha acabado
+					//El usuario estï¿½ en un viaje y no ha acabado
 					viajeActual = viaje;
 					req.getSession().setAttribute("viaje", viajeActual);
 					break;
@@ -69,10 +67,13 @@ public class LoginServlet extends HttpServlet {
 			
 			req.getSession().setAttribute("email", email);
 			req.getSession().setAttribute("estaciones", estaciones);
+			//req.getSession().setAttribute("usuarios", usuarios);
+			req.getSession().setAttribute("usuario", usuario);
 			getServletContext().getRequestDispatcher("/InterfazUsuario.jsp").forward(req,resp);
 		
 		} else {
-			getServletContext().getRequestDispatcher("/FormularioRegistro.jsp").forward(req,resp);
+			JOptionPane.showMessageDialog(null, "El login o la contraseÃ±a son incorrectos");
+			getServletContext().getRequestDispatcher("/index.jsp").forward(req,resp);
 		}
 	}
 
