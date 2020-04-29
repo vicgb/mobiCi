@@ -41,7 +41,7 @@ public class TerminarViajeServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		Estacion estacionFin = EstacionDAOImplementation.getInstancia().read(req.getParameter("estacionFin"));
-		Viaje viaje= ViajeDAOImplementation.getInstancia().read(Integer.parseInt(req.getParameter("viaje")));
+		Viaje viaje= ViajeDAOImplementation.getInstancia().read((req.getParameter("viaje")));
 		List<Anclaje> anclajes =(List<Anclaje>) AnclajeDAOImplementation.getInstancia().readAll();
 		List<Anclaje> anclajesDisponibles = new ArrayList<Anclaje>();
 		int i=0;

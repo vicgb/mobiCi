@@ -5,7 +5,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -17,7 +16,7 @@ public class Viaje implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	private int id;
+	private String id;
 
 	private String idUsuario;
 	
@@ -41,8 +40,8 @@ public class Viaje implements Serializable {
 	
 	public Viaje(Anclaje anclajeInicio, String idUsuario, String idBicicleta) {
 		super();
-
-		this.setId(Math.abs(new Random().nextInt()));
+		String id = String.valueOf(Math.abs(new Random().nextInt()));
+		this.setId(id);
 		Date date = new Date();
 		String str = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(date);
 		this.setInicioDate(str);
@@ -94,7 +93,7 @@ public class Viaje implements Serializable {
 		this.anclajeFin = anclajeFin;
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
@@ -106,7 +105,7 @@ public class Viaje implements Serializable {
 		this.idBicileta = idBicileta;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -134,7 +133,6 @@ public class Viaje implements Serializable {
 		this.finDate = finDate;
 	}
 
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -145,7 +143,7 @@ public class Viaje implements Serializable {
 		temp = Double.doubleToLongBits(coste);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((finDate == null) ? 0 : finDate.hashCode());
-		result = prime * result + id;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((idBicileta == null) ? 0 : idBicileta.hashCode());
 		result = prime * result + ((idUsuario == null) ? 0 : idUsuario.hashCode());
 		result = prime * result + ((inicioDate == null) ? 0 : inicioDate.hashCode());
@@ -178,7 +176,10 @@ public class Viaje implements Serializable {
 				return false;
 		} else if (!finDate.equals(other.finDate))
 			return false;
-		if (id != other.id)
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
 			return false;
 		if (idBicileta == null) {
 			if (other.idBicileta != null)

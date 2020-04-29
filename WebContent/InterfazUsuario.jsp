@@ -42,13 +42,13 @@ iframe {
 				<tr>
 					<th>Estacion</th>
 					<th>Ir a</th>
-				<c:choose><c:when test="${not empty viaje}"><th>Acabar viaje</th></c:when></c:choose>
+				<c:choose><c:when test="${not empty viaje and empty viajeTerminado}"><th>Acabar viaje</th></c:when></c:choose>
 				</tr>
 				<c:forEach items="${estaciones}" var="estacioni">
 					<tr>
 						<td>${estacioni.id}</td>
 						<td><%@ include file="FormEstacion.jsp"%></td>	
-			   			<c:choose><c:when test="${not empty viaje}"> <td><%@ include file="FormTerminarViaje.jsp"%></td>  </c:when></c:choose>
+			   			<c:choose><c:when test="${not empty viaje and empty viajeTerminado}"> <td><%@ include file="FormTerminarViaje.jsp"%></td>  </c:when></c:choose>
 						<!-- <if test="${not empty viaje}"><td><%@ include file="FormTerminarViaje.jsp"%></td></if> -->
 				</c:forEach>
 			</table>

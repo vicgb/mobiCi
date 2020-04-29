@@ -31,7 +31,7 @@ public class ViajeDAOImplementation implements ViajeDAO {
 	}
 
 	@Override
-	public Viaje read(int id) {
+	public Viaje read(String id) {
 		Session session = SessionFactoryService.get().openSession();
 		session.beginTransaction();
 		Viaje v = session.get(Viaje.class, id);
