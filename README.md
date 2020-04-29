@@ -1,2 +1,10 @@
 # mobiCi
-Trabajo de la asignatura Ingeniería de Sistemas y Servicios Telemáticos de 4º del Grado en Ingeniería de Tecnologías y Servicios de Telecomunicaciones de la UPM.
+En este commit se ha arreglado:
+
+- Que por defecto, cuando creas una estacion, se crea tambien un anclaje. El admin puede crear mas.
+
+- Por defecto, todos los anclajes creados tendrán de estado Libre.
+
+- Barra de Navegación arreglada.
+
+
