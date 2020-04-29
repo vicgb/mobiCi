@@ -43,13 +43,12 @@ public class FormCreaAnclajeServlet extends HttpServlet {
     	
 		String id = req.getParameter("id");
 		String bicicleta = req.getParameter("bicicleta");
-		EstadoAnclaje estado = EstadoAnclaje.LIBRE;
 		String estacionId = req.getParameter("estacionId");
 		
 		Anclaje anclaje = new Anclaje();
 		anclaje.setId(id);
 		anclaje.setBicicleta(bicicleta);
-		anclaje.setEstado(estado);
+		anclaje.setEstado(EstadoAnclaje.LIBRE);
 		anclaje.setIdEstacion(estacionId);
 		
 		
@@ -61,7 +60,6 @@ public class FormCreaAnclajeServlet extends HttpServlet {
 		
 		List<String> anclajesId = new ArrayList<String>();
 		List<String> anclajesBicicletas = new ArrayList<String>();
-		List<EstadoAnclaje> anclajesEstado = new ArrayList<EstadoAnclaje>();
 		List<Anclaje> anclajes =(List<Anclaje>) AnclajeDAOImplementation.getInstancia().readAll();
 		
 		int j=0;
@@ -70,7 +68,7 @@ public class FormCreaAnclajeServlet extends HttpServlet {
 			if(estacion.getId().equals(anclaje2.getIdEstacion())){
 				anclajesId.add(anclaje2.getId());
 				anclajesBicicletas.add(anclaje2.getBicicleta());
-				anclajesEstado.add(anclaje2.getEstado());
+				//anclajesEstado.add(anclaje2.getEstado());
 			}
 				j++;
 			
@@ -79,11 +77,11 @@ public class FormCreaAnclajeServlet extends HttpServlet {
 		req.getSession().setAttribute("estacion", estacion);
 		req.setAttribute("anclajesId", anclajesId);
 		req.setAttribute("anclajesBicicletas", anclajesBicicletas);
-		req.setAttribute("anclajesEstado", anclajesEstado);
+		//req.setAttribute("anclajesEstado", anclajesEstado);
 		
 		
     
-    	JOptionPane.showMessageDialog(null, "Se ha creado correctamente");
+    	JOptionPane.showMessageDialog(null, "Se ha creado correctamente el anclaje");
     	getServletContext().getRequestDispatcher("/EstacionAdmin.jsp").forward(req,resp);
 	}
 

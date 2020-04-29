@@ -37,7 +37,7 @@ margin-bottom: 5px;
 	<div><input type="text" name="direccion" placeholder="Direccion"></div>
 	<div><input type="text" name="longitud" placeholder="Longitud"></div>
 	<div><input type="text" name="latitud" placeholder="Latitud"></div>
-	<div><input type="number" name="capacidad" placeholder="capacidad"></div>
+	<div><input type="text" name="capacidad" placeholder="capacidad"></div>
 	<div><button type="submit">Crear</button></div>
 </form>
 </div>

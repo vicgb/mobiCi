@@ -37,7 +37,6 @@ margin-bottom:15px;
 <form action="FormCreaAnclajeServlet">
 	<div><input type="text" name="id" placeholder="ID"></div>
 	<div><input type="text" name="bicicleta" placeholder="Bicicleta"></div>
-	<div><input type="text" name="estado" placeholder="Estado"></div>
 	<div><input type="text" name="estacionId" value = "${estacion.id}"></div>
 	
 	<div><button type="submit">Crear</button></div>
