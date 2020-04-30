@@ -51,6 +51,9 @@ iframe {
 						</td>
 				</c:forEach>
 			</table>
+			<c:if test="${reservado == true}">
+				<%@ include file="FormReservaActual.jsp"%>
+			</c:if>
 		</tr>
 
 	</div>

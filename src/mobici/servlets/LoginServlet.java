@@ -25,6 +25,7 @@ public class LoginServlet extends HttpServlet {
 	 */
 	public LoginServlet() {
 		super();
+		System.out.println("hola");
 		// TODO Auto-generated constructor stub
 	}
 
@@ -46,8 +47,22 @@ public class LoginServlet extends HttpServlet {
 			getServletContext().getRequestDispatcher("/InterfazAdmin.jsp").forward(req,resp);
 		} else if ( null != usuario ) {
 			List<Estacion> estaciones = (List<Estacion>) EstacionDAOImplementation.getInstancia().readAll();
+			Reserva reserva = ReservaDAOImplementation.getInstancia().read(email);
+			req.getSession().setAttribute("usuario", usuario);
 			req.getSession().setAttribute("email", usuario);
 			req.getSession().setAttribute("estaciones", estaciones);
+			if (null != reserva) {
+				req.getSession().setAttribute("reserva", reserva);
+				req.getSession().setAttribute("reservado", true);
+				Anclaje anclajeReservado = AnclajeDAOImplementation.getInstancia().read(reserva.getAnclaje());
+				Estacion estacionReservada = anclajeReservado.getEstacion();
+				req.getSession().setAttribute("anclaje", anclajeReservado);
+				req.getSession().setAttribute("estacion", estacionReservada);
+				req.getSession().setAttribute("vencimiento", reserva.getVencimiento().getTime());
+			}
+			else {
+				req.getSession().setAttribute("reservado", false);
+			}
 			getServletContext().getRequestDispatcher("/InterfazUsuario.jsp").forward(req,resp);
 		
 		} else {
