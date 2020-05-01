@@ -22,5 +22,6 @@
 		<mapping class="mobici.model.EstadoBici" />
 		<mapping class="mobici.model.Viaje" />
 		<mapping class="mobici.model.Admin" />
+		<mapping class="mobici.model.Reserva" />
 	</session-factory>
 </hibernate-configuration>

@@ -91,10 +91,16 @@ background-color: #f4f5f7;
 			<c:otherwise>
 				<c:choose>
 					<c:when test="${disponibles >= 1}">
-						<%@ include file="FormAlquilar.jsp"%>
-						<br />
+						<c:choose>
+							<c:when test="${reservado == false}">
+								<%@ include file="FormAlquilar.jsp"%><br />
+								<%@ include file="FormReservar.jsp"%><br />
+							</c:when>
+							<c:otherwise>
+								Tiene usted una reserva pendiente.
+							</c:otherwise>
+						</c:choose>
 					</c:when>
-					
 					<c:otherwise>
 						No hay bicicletas disponibles
 						<br />

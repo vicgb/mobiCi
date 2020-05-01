@@ -82,6 +82,11 @@ background-color: #f4f5f7;
 			   </c:when>
 			   <c:otherwise></c:otherwise> 
 			</c:choose>
+			<c:if test="${reservado == true}">
+				<%@ include file="FormReservaActual.jsp"%>
+			</c:if>
+		</tr>
+
 	</div>
 	<div class="mapa">
 		<iframe

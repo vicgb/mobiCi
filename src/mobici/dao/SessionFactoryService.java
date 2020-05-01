@@ -1,9 +1,9 @@
 package mobici.dao;
-
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 public class SessionFactoryService {
+
 	private SessionFactory sessionFactory;
 	private static SessionFactoryService sfs;
 
@@ -12,9 +12,8 @@ public class SessionFactoryService {
 	}
 
 	public static SessionFactory get() {
-		if (sfs == null)
+		if (null == sfs)
 			sfs = new SessionFactoryService();
-
 		return sfs.sessionFactory;
 	}
 }

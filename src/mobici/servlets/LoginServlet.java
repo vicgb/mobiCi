@@ -28,6 +28,7 @@ public class LoginServlet extends HttpServlet {
 	 */
 	public LoginServlet() {
 		super();
+		System.out.println("hola");
 		// TODO Auto-generated constructor stub
 	}
 
@@ -57,7 +58,7 @@ public class LoginServlet extends HttpServlet {
 			while(i< viajes.size()) {
 				Viaje viaje= viajes.get(i);
 				if(viaje.getIdUsuario().equals(email) && viaje.getFinDate() == null) {
-					//El usuario est� en un viaje y no ha acabado
+					//El usuario esta en un viaje y no ha acabado
 					viajeActual = viaje;
 					req.getSession().setAttribute("viaje", viajeActual);
 					break;
@@ -67,8 +68,20 @@ public class LoginServlet extends HttpServlet {
 			
 			req.getSession().setAttribute("email", email);
 			req.getSession().setAttribute("estaciones", estaciones);
-			//req.getSession().setAttribute("usuarios", usuarios);
 			req.getSession().setAttribute("usuario", usuario);
+			Reserva reserva = ReservaDAOImplementation.getInstancia().read(email);
+			if (null != reserva) {
+				req.getSession().setAttribute("reserva", reserva);
+				req.getSession().setAttribute("reservado", true);
+				Anclaje anclajeReservado = AnclajeDAOImplementation.getInstancia().read(reserva.getAnclaje());
+				Estacion estacionReservada = anclajeReservado.getEstacion();
+				req.getSession().setAttribute("anclaje", anclajeReservado);
+				req.getSession().setAttribute("estacion", estacionReservada);
+				req.getSession().setAttribute("vencimiento", reserva.getVencimiento().getTime());
+			}
+			else {
+				req.getSession().setAttribute("reservado", false);
+			}
 			getServletContext().getRequestDispatcher("/InterfazUsuario.jsp").forward(req,resp);
 		
 		} else {
