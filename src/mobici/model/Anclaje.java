@@ -2,6 +2,7 @@ package mobici.model;
 
 import java.io.Serializable;
 
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -30,6 +31,11 @@ public class Anclaje implements Serializable {
 	//Constructor
 	public Anclaje() {
 		super();
+	}
+	
+	public void liberarAnclaje() {
+		this.setEstado(EstadoAnclaje.LIBRE);
+		this.setBicicleta(null);
 	}
 
 	//Geters y Seters

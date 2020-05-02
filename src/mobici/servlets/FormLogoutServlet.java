@@ -21,7 +21,7 @@ public class FormLogoutServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.getSession().removeAttribute("admin");
 		req.getSession().invalidate();
-		getServletContext().getRequestDispatcher("/index.html").forward(req,resp);
+		getServletContext().getRequestDispatcher("/index.jsp").forward(req,resp);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -6,41 +6,59 @@
 <meta charset="UTF-8">
 </head>
 <style>
-div.barraNavegacion {
+header{
+	background: rgba(0,0,0,.32) ;
 	width: 100%;
-	background-color: #A9A9A9;
-	padding: 5px;
+	position: fixed;
+	z-index: 100;
+}
+nav{
+	float: right;
 }
 
-nav ul {
+nav ul{
 	list-style: none;
-}
-
-nav ul h4 {
-	text-align: center;
+	overflwow: hidden;
 }
 
 nav ul li {
 	float: right;
-	margin-top: -25px;
+	font-family: Arial, sans-serif;
+	font-size: 16px;
 }
-
 nav ul li a {
 	display: block;
-	margin-right: 5px;
+	padding: 20px;
 	color: black;
+	text-decoration: none;
 }
+
+nav ul li:hover{
+	background: #ffff;
+}
+
+h2{
+	float: left;
+	margin-left: 15px;
+	margin-top: 15px;
+	margin-bottom: 5px;
+	font-family: Arial;
+}
+
 </style>
-<div class="barraNavegacion">
+
+<header>
+<h2>mobiCi</h2>
 	<nav>
-		<h4>MobiCi</h4>
-		<!-- CSS tomado de referencia:  http://www.forosdelweb.com/f53/barra-navegacion-elegante-909918/-->
-		<ul class="menu">
-			
-			<li><a href="#">Perfil</a></li>
-		</ul>
+	
+	<ul>
+		 <li><a href = "FormLogoutServlet">Salir</a></li>
+		 <li><a href = "FormPerfilServlet">Perfil</a></li>
+
+	</ul>
 	</nav>
-</div>
+</header>
+
 <body>
 </body>
 </html>

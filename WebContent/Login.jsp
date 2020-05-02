@@ -5,21 +5,23 @@
 <head>
 <meta charset="UTF-8">
 <style>
-
 form.formularioLogin{
-	margin-top: 50px;
-	margin-left: 500px;
+	margin-top: 150px;
+	margin-left: 550px;
 	border: 1px solid !important;
 	float:left;
 	padding: 30px;
+	background-color: #ffff;
 }
-
 button{
 	margin-top: 10px;
 }
-
-label{
+input{
 	margin-top: 10px;
+	margin-bottom: 10px;
+}
+html{
+background-color: #f4f5f7;
 }
 </style>
 <body>
@@ -28,7 +30,7 @@ label{
 	<div>
 	<label>Usuario</label>
 	<br>
-	<input type="input" name="email" placeholder = "Introduzca su email">
+	<input type="text" name="email" placeholder = "Introduzca su email">
 	<div>
 	<label>Contraseña</label>
 	<br>

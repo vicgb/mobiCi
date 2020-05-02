@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +14,7 @@
 	<input type="text" name="apellido2" placeholder="Apellido">
 	<input type="password" name="password" placeholder="Password">
 	<input type="password" name="repPassword" placeholder="Repita Password">
-	<input type="text" name="telefono" placeholder="Teléfono">
+	<input type="text" name="telefono" placeholder="TelÃ©fono">
 	<input type="text" name="dni" placeholder="DNI">
 	<input type="text" name="numTarjeta" placeholder="Tarjeta">
 	<input type="text" name="fechaCadu" placeholder="Fecha Caducidad">

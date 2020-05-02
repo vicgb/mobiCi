@@ -41,6 +41,7 @@ public class UsuarioDAOImplementation implements UsuarioDAO {
 		q.setParameter("email", email);
 		q.setParameter("password", password);
 
+		@SuppressWarnings("unchecked")
 		List<Usuario> usus = q.getResultList();
 		if (usus.size() > 0)
 			u = (Usuario) (q.getResultList().get(0));

@@ -19,6 +19,7 @@ public class Estacion implements Serializable {
 	private String id;
 	
 	//Resto de atributos
+	private String direccion;
 	private String latitud;
 	private String longitud;
 	private int capacidad;
@@ -73,6 +74,13 @@ public class Estacion implements Serializable {
 		this.anclajes = anclajes;
 	}
 
+	public String getDireccion() {
+		return direccion;
+	}
+
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
 	//HashCode y Equeals
 	@Override
 	public int hashCode() {
@@ -117,10 +125,10 @@ public class Estacion implements Serializable {
 		return true;
 	}
 
-	//ToString
 	@Override
 	public String toString() {
-		return "Estacion [id=" + id + ", latitud=" + latitud + ", longitud=" + longitud + ", capacidad="
-				+ capacidad + ", anclajes=" + anclajes + "]";
+		return "Estacion [id=" + id + ", latitud=" + latitud + ", longitud=" + longitud + ", capacidad=" + capacidad + "]";
 	}
+
+	
 }

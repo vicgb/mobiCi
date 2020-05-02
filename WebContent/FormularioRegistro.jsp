@@ -5,27 +5,28 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
-<%@ include file = "Navbar.jsp" %>
+<%@ include file = "NavbarRegistro.jsp" %>
 <style>
 
+html{
+background-color: #f4f5f7;
+}
+
 #formularioRegistro{
-	margin-top: 50px;
-	margin-left: 500px;
+	margin-top: 150px;
+	margin-left: 550px;
 	border: 1px solid !important;
 	float: left;
 	padding: 30px;
+	background-color: #ffff;
 }
-
 label{
 	padding: 5px;
 	margin: 5px;
 }
-
 input{
 	margin: 5px;
 }
-
-
 </style>
 <body>
 
@@ -68,7 +69,7 @@ input{
 	<div>
 	<label>Fecha de caducidad</label>
 	<br>
-	<input type="time" name="fechaCadu" placeholder = "Introduzca la fecha de caducidad de su tarjeta">
+	<input type="date" name="fechaCadu" placeholder = "Introduzca la fecha de caducidad de su tarjeta">
 	</div>
 	<div>
 	<label>CVV</label>

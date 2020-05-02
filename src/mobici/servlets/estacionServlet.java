@@ -1,6 +1,8 @@
 package mobici.servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,8 +10,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import mobici.dao.AnclajeDAOImplementation;
 import mobici.dao.EstacionDAOImplementation;
+import mobici.model.Anclaje;
 import mobici.model.Estacion;
+import mobici.model.EstadoAnclaje;
 
 /**
  * Servlet implementation class estacionServlet
@@ -29,9 +34,23 @@ public class estacionServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		Estacion estacion = EstacionDAOImplementation.getInstancia().read(req.getParameter("estacion"));
-		
-		
+		List<Anclaje> anclajes =(List<Anclaje>) AnclajeDAOImplementation.getInstancia().readAll();
+		List<Anclaje> anclajesDisponibles = new ArrayList<Anclaje>();
+		int i=0;
+		while(i< anclajes.size()) {
+			Anclaje anclaje = anclajes.get(i);
+			if(estacion.getId().equals(anclaje.getIdEstacion()) && anclaje.getEstado().equals(EstadoAnclaje.OCUPADO)) {
+				anclajesDisponibles.add(anclaje);
+			}
+			i++;
+		}
 		req.getSession().setAttribute("estacion", estacion);
+		req.getSession().setAttribute("email", req.getParameter("email"));
+		int disponibles = anclajesDisponibles.size();
+		req.getSession().setAttribute("disponibles", disponibles);
+		if(disponibles > 0) {			
+			req.getSession().setAttribute("anclajeDisponible", anclajesDisponibles.get(0));
+		}
 		getServletContext().getRequestDispatcher("/Estacion.jsp").forward(req,res);
 }
 
