@@ -71,9 +71,9 @@ margin-top: 25px;
 				<tr>
 					<th> Estacion id </th>
 					<th> Direccion</th>
-					<th> Capacidad </th>
+					<th> Anclajes </th>
 					<th> Coordenadas </th>
-					<th> Disponibles </th>
+					<th> Bicis Disponibles </th>
 				</tr>
 				<tr>
 				<td class = "td"> ${estacion.id} </td>

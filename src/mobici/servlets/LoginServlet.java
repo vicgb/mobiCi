@@ -1,7 +1,9 @@
 package mobici.servlets;
 
 import java.io.IOException;
-import java.text.ParseException;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -33,15 +35,27 @@ public class LoginServlet extends HttpServlet {
 
 	private final String ADMIN_EMAIL = "root";
 	private final String ADMIN_PASSWORD = "root";
-
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		 
 		
 		String email = req.getParameter("email");
 		String password = req.getParameter("password");
 
+		MessageDigest digest = null;
+		try {
+			digest = MessageDigest.getInstance("SHA-256");
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		byte[] hash = digest.digest(password.getBytes(StandardCharsets.UTF_8));
+		
+		String passwordHash = new String(hash);
+		
 		List<Usuario> usuarios = (List<Usuario>) UsuarioDAOImplementation.getInstancia().readAll();
-		Usuario usuario = UsuarioDAOImplementation.getInstancia().login(email, password);
+		Usuario usuario = UsuarioDAOImplementation.getInstancia().login(email, passwordHash);
 		
 		if( ADMIN_EMAIL.equals(email) && ADMIN_PASSWORD.equals(password) ) {
 			req.getSession().setAttribute("admin", true);
@@ -84,5 +98,7 @@ public class LoginServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
+	
+	  
 
 }

@@ -39,7 +39,6 @@ public class FormCreaEstacionServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		String id  = req.getParameter("id");
-		String id2 = req.getParameter("id");
 		
 		
 		String latitud = req.getParameter("latitud");
@@ -48,8 +47,8 @@ public class FormCreaEstacionServlet extends HttpServlet {
 		int capacidad = Integer.parseInt(c);
 		String direccion = req.getParameter("direccion");
 		
-		String idAnclaje = String.valueOf(Math.abs(new Random().nextInt()));
-		String idBicicleta = String.valueOf(Math.abs(new Random().nextInt()));
+		//String idAnclaje = String.valueOf(Math.abs(new Random().nextInt()));
+		//String idBicicleta = String.valueOf(Math.abs(new Random().nextInt()));
 		
 		EstadoAnclaje estado = EstadoAnclaje.LIBRE;
 		
@@ -61,25 +60,35 @@ public class FormCreaEstacionServlet extends HttpServlet {
 		estacion.setLongitud(longitud);
 		estacion.setCapacidad(capacidad);
 		estacion.setDireccion(direccion);
-		estacion.setAnclajes(null);
+		
 		
 
 		EstacionDAOImplementation.getInstancia().create(estacion);
 		
 		
-		// Por defecto crea un solo anclaje	
-		Anclaje anclaje = new Anclaje();
-
-		anclaje.setId(idAnclaje);
-		anclaje.setBicicleta(idBicicleta);
-		anclaje.setEstado(estado);
-		anclaje.setIdEstacion(id2);
 		
-		AnclajeDAOImplementation.getInstancia().create(anclaje);
-				
+		
+		int i=0;
+		while(i< capacidad) {
 			
-	
+			String idAnclaje = String.valueOf(Math.abs(new Random().nextInt()));
+			Anclaje anclaje = new Anclaje();
+			
+			//anclaje
+			anclaje.setId(idAnclaje);
+			anclaje.setBicicleta(null);
+			anclaje.setEstado(estado);
+			//estacion
+			anclaje.setIdEstacion(id);
+			
+			AnclajeDAOImplementation.getInstancia().create(anclaje);
+			
+			i++;
+	}
 		
+		
+		
+
 		List<Estacion> le = new ArrayList<Estacion>();
 		le.addAll((List<Estacion>) req.getSession().getAttribute("estaciones"));
 		le.add (estacion);

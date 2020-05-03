@@ -1,8 +1,9 @@
 package mobici.servlets;
 
 import java.io.IOException;
-
-
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -42,8 +43,27 @@ public class FormRegistroServlet extends HttpServlet {
 		String repPassword = req.getParameter("repPassword");
 
 		
+		
+		
 
 		if(repPassword.equals(password)) {
+			
+			
+			
+			MessageDigest digest = null;
+			try {
+				digest = MessageDigest.getInstance("SHA-256");
+			} catch (NoSuchAlgorithmException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			byte[] hash = digest.digest(password.getBytes(StandardCharsets.UTF_8));
+			
+			String passwordHash = new String(hash);
+			
+			
+			
+			
 			Usuario usuario = new Usuario();
 			usuario.setNombre(nombre);
 			usuario.setApellido1(apellido1);
@@ -54,8 +74,8 @@ public class FormRegistroServlet extends HttpServlet {
 			usuario.setNumTarjeta(numTarjeta);
 			usuario.setFechaCadu(fechaCadu);
 			usuario.setCvv(cvv);
-			usuario.setPassword(password);
-			usuario.setRepPassword(repPassword);
+			usuario.setPassword(passwordHash);
+			//usuario.setRepPassword(repPassword);
 			UsuarioDAOImplementation.getInstancia().create(usuario);
 			JOptionPane.showMessageDialog(null, "El usuario se ha registrado correctamente");
 			resp.sendRedirect(req.getContextPath() + "/index.jsp");

@@ -1,10 +1,10 @@
 # mobiCi
 En este commit se ha arreglado:
 
-- Que por defecto, cuando creas una estacion, se crea tambien un anclaje. El admin puede crear mas.
+- Cuando se crea una estacion de capacidad N, se crea la estación con N anclajes, inicialmente sin bicicletas.
 
-- Por defecto, todos los anclajes creados tendrán de estado Libre.
+- Seguridad implementada en el registro-login. Contraseña hasheada con SHA-256
 
-- Barra de Navegación arreglada.
+- WebContent modificado.
 
 
