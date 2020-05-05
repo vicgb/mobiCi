@@ -30,7 +30,6 @@ public class LoginServlet extends HttpServlet {
 	 */
 	public LoginServlet() {
 		super();
-		System.out.println("hola");
 		// TODO Auto-generated constructor stub
 	}
 

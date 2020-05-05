@@ -15,7 +15,7 @@
 	margin-right: 50px;
 }
 
-table{
+table {
 	margin-top: 50px;
 	background-color: #ffff;
 }
@@ -35,8 +35,8 @@ iframe {
 	margin-left: 00px;;
 }
 
-html{
-background-color: #f4f5f7;
+html {
+	background-color: #f4f5f7;
 }
 </style>
 
@@ -47,52 +47,54 @@ background-color: #f4f5f7;
 	<h2>Bienvenido: ${usuario.nombre}</h2>
 
 	<div id="derecha">
-			<table border="1">
-				<tr>
-					<th>Estacion con ID</th>
-					<th>Dirección</th>
-					<th>Ir a</th>
-				<c:choose><c:when test="${not empty viaje and empty viajeTerminado}"><th>Acabar viaje</th></c:when></c:choose>
-				</tr>
+		<table border="1">
+			<tr>
+				<th>Estacion con ID</th>
+				<th>Dirección</th>
+				<th>Ir a</th>
+				<c:choose>
+					<c:when test="${not empty viaje and empty viajeTerminado}">
+						<th>Acabar viaje</th>
+					</c:when>
+				</c:choose>
+			</tr>
 
-				<c:forEach items="${estaciones}" var="estacioni">
-					<tr>
-						<td>${estacioni.id}</td>
-						<td>${estacioni.direccion}</td>
-						<td><%@ include file="FormEstacion.jsp"%></td>	
-						<c:choose><c:when test="${not empty viaje and empty viajeTerminado}"> <td><%@ include file="FormTerminarViaje.jsp"%></td>  </c:when></c:choose>
-					</tr>
-					</c:forEach>
-			</table>
-			
-			<c:choose>
-			   <c:when test="${not empty viajeTerminado}">
+			<c:forEach items="${estaciones}" var="estacioni">
+				<tr>
+					<td>${estacioni.id}</td>
+					<td>${estacioni.direccion}</td>
+					<td><%@ include file="FormEstacion.jsp"%></td>
+					<c:choose>
+						<c:when test="${not empty viaje and empty viajeTerminado}">
+							<td><%@ include file="FormTerminarViaje.jsp"%></td>
+						</c:when>
+					</c:choose>
+				</tr>
+			</c:forEach>
+		</table>
+
+		<c:choose>
+			<c:when test="${not empty viajeTerminado}">
 				Usted ha terminado el viaje <br>
 				 desde el anclaje ${viajeTerminado.anclajeInicio.id} <br>
 				 hasta el anclaje ${viajeTerminado.anclajeFin.id} <br>
 				 comenzado a las ${viajeTerminado.inicioDate} <br>
 				 terminado a las ${viajeTerminado.finDate} <br>
 				 Coste del viaje: ${viajeTerminado.coste} <br>
-				</c:when>
-			   <c:when test="${not empty viaje}">
+			</c:when>
+			<c:when test="${not empty viaje}">
 				   Usted esta realizando un viaje desde el anclaje ${viaje.anclajeInicio.id} comenzado a las ${viaje.inicioDate} <br>
-				   <c:if test="${not empty error}">
+				<c:if test="${not empty error}">
 						${error} <br>
-					</c:if>
-			   </c:when>
-			   <c:otherwise></c:otherwise> 
-			</c:choose>
-			<c:if test="${reservado == true}">
-				<%@ include file="FormReservaActual.jsp"%>
-			</c:if>
-		</tr>
+				</c:if>
+			</c:when>
+			<c:otherwise></c:otherwise>
+		</c:choose>
+		<c:if test="${reservado == true}">
+			<%@ include file="FormReservaActual.jsp"%>
+		</c:if>
 
 	</div>
-	<div class="mapa">
-		<iframe
-			src="https://www.google.com/maps/d/u/0/embed?mid=1rMDFcbZ1U-fNw5k36MjqkNnu6u8mUvGK"
-			width="600" height="350" style="border: 0;" aria-hidden="false"
-			tabindex="0"></iframe>
-	</div>
+	<%@ include file="FormMapa.jsp"%>
 </body>
 </html>
