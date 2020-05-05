@@ -1,2 +1,10 @@
 # mobiCi
-Trabajo de la asignatura Ingeniería de Sistemas y Servicios Telemáticos de 4º del Grado en Ingeniería de Tecnologías y Servicios de Telecomunicaciones de la UPM.
+En este commit se ha arreglado:
+
+- Cuando se crea una estacion de capacidad N, se crea la estación con N anclajes, inicialmente sin bicicletas.
+
+- Seguridad implementada en el registro-login. Contraseña hasheada con SHA-256
+
+- WebContent modificado.
+
+

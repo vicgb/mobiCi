@@ -6,7 +6,7 @@
 <html>
 <head>
 <title>mobiCi</title>
-<%@ include file="NavbarRegistrado.jsp"%>
+<%@ include file="NavbarInterfazAdmin.jsp"%>
 
 <style>
 #derecha {

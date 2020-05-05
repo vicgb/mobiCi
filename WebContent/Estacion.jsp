@@ -64,9 +64,9 @@ background-color: #f4f5f7;
 				<tr>
 					<th> ID </th>
 					<th> Dirección</th>
-					<th> Capacidad </th>
+					<th> Anclajes </th>
 					<th> Coordenadas </th>
-					<th> Disponibles </th>
+					<th> Bicis disponibles </th>
 				</tr>
 				<tr>
 				<td class = "td"> ${estacion.id} </td>
