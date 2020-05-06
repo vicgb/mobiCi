@@ -12,9 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import mobici.dao.AnclajeDAOImplementation;
 import mobici.dao.EstacionDAOImplementation;
+import mobici.dao.UsuarioDAOImplementation;
+import mobici.dao.ViajeDAOImplementation;
 import mobici.model.Anclaje;
 import mobici.model.Estacion;
 import mobici.model.EstadoAnclaje;
+import mobici.model.EstadoUsuario;
+import mobici.model.Usuario;
 
 /**
  * Servlet implementation class estacionServlet
@@ -34,6 +38,7 @@ public class estacionServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		Estacion estacion = EstacionDAOImplementation.getInstancia().read(req.getParameter("estacion"));
+		Usuario usuario= UsuarioDAOImplementation.getInstancia().read(req.getParameter("email"));
 		List<Anclaje> anclajes =(List<Anclaje>) AnclajeDAOImplementation.getInstancia().readAll();
 		List<Anclaje> anclajesDisponibles = new ArrayList<Anclaje>();
 		int i=0;
@@ -48,9 +53,20 @@ public class estacionServlet extends HttpServlet {
 		req.getSession().setAttribute("email", req.getParameter("email"));
 		int disponibles = anclajesDisponibles.size();
 		req.getSession().setAttribute("disponibles", disponibles);
-		if(disponibles > 0) {			
+		if(disponibles > 0) {
 			req.getSession().setAttribute("anclajeDisponible", anclajesDisponibles.get(0));
 		}
+
+		System.out.println(usuario.getEstadoUsuario());
+		System.out.println(usuario.getEstadoUsuario().equals(EstadoUsuario.VIAJANDO));
+		System.out.println(usuario.getEstadoUsuario().equals(EstadoUsuario.RESERVADO));
+		System.out.println(usuario.getEstadoUsuario().equals(EstadoUsuario.VIAJANDO) || usuario.getEstadoUsuario().equals(EstadoUsuario.RESERVADO));
+		if(usuario.getEstadoUsuario().equals(EstadoUsuario.VIAJANDO) || usuario.getEstadoUsuario().equals(EstadoUsuario.RESERVADO)) {
+			req.getSession().setAttribute("puedeAlquilar", false);
+		} else {
+			req.getSession().setAttribute("puedeAlquilar", true);
+		}
+		
 		getServletContext().getRequestDispatcher("/Estacion.jsp").forward(req,res);
 }
 

@@ -86,13 +86,13 @@ background-color: #f4f5f7;
 		<div id = "alquiler">
 		<c:choose>
 			<c:when test="${alquilado == true}">
-			Usted ha alquilado la bicicleta ${bicicleta.id}, en la estacion ${estacion.id}, en el anclaje ${anclaje.id} 
+			Usted ha alquilado la bicicleta ${bicicleta.id}, en el anclaje ${anclaje.id} 
 			</c:when>
 			<c:otherwise>
 				<c:choose>
 					<c:when test="${disponibles >= 1}">
 						<c:choose>
-							<c:when test="${reservado == false}">
+							<c:when test="${puedeAlquilar == true}">
 								<%@ include file="FormAlquilar.jsp"%><br />
 								<%@ include file="FormReservar.jsp"%><br />
 							</c:when>

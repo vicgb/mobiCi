@@ -18,6 +18,7 @@ import mobici.model.Bicicleta;
 import mobici.model.Estacion;
 import mobici.model.EstadoAnclaje;
 import mobici.model.EstadoBici;
+import mobici.model.EstadoUsuario;
 import mobici.model.Usuario;
 import mobici.model.Viaje;
 
@@ -51,7 +52,6 @@ public class AlquilarServlet extends HttpServlet {
 		bicicleta.setEstado(EstadoBici.VIAJANDO);
 		AnclajeDAOImplementation.getInstancia().update(anclaje);
 		BicicletaDAOImplementation.getInstancia().update(bicicleta);
-		
 		int disponibles = Integer.parseInt(req.getParameter("disponibles"));
 		disponibles--;
 		req.getSession().setAttribute("estacion", estacion);
