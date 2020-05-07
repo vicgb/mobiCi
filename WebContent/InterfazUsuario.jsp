@@ -44,10 +44,13 @@ html {
 <body>
 
 
-	<h2>Bienvenido: ${usuario.nombre}</h2>
+	
 
 	<div id="derecha">
+	
+	<h2>Bienvenido: ${usuario.nombre}</h2>
 		<table border="1">
+		
 			<tr>
 				<th>Estacion con ID</th>
 				<th>Dirección</th>
