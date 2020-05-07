@@ -56,15 +56,18 @@ public class estacionServlet extends HttpServlet {
 		if(disponibles > 0) {
 			req.getSession().setAttribute("anclajeDisponible", anclajesDisponibles.get(0));
 		}
-
-		System.out.println(usuario.getEstadoUsuario());
-		System.out.println(usuario.getEstadoUsuario().equals(EstadoUsuario.VIAJANDO));
-		System.out.println(usuario.getEstadoUsuario().equals(EstadoUsuario.RESERVADO));
-		System.out.println(usuario.getEstadoUsuario().equals(EstadoUsuario.VIAJANDO) || usuario.getEstadoUsuario().equals(EstadoUsuario.RESERVADO));
-		if(usuario.getEstadoUsuario().equals(EstadoUsuario.VIAJANDO) || usuario.getEstadoUsuario().equals(EstadoUsuario.RESERVADO)) {
-			req.getSession().setAttribute("puedeAlquilar", false);
+		
+		if(usuario.getEstadoUsuario().equals(EstadoUsuario.VIAJANDO)) {
+			req.getSession().setAttribute("alquilado", true);
 		} else {
+			req.getSession().setAttribute("alquilado", false);
+			
+		}
+		
+		if(usuario.getEstadoUsuario().equals(EstadoUsuario.NADA) || usuario.getEstadoUsuario().equals(null) ) {
 			req.getSession().setAttribute("puedeAlquilar", true);
+		} else {
+			req.getSession().setAttribute("puedeAlquilar", false);
 		}
 		
 		getServletContext().getRequestDispatcher("/Estacion.jsp").forward(req,res);

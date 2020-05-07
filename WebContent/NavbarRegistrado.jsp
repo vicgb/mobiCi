@@ -53,7 +53,11 @@ h2{
 	
 	<ul>
 		<li><a href = "FormLogoutServlet">Salir</a></li>
-		 <li><a href = "FormPerfilServlet">Perfil</a></li>
+		<li><form action="FormPerfilServlet" method="post">
+			<input type="hidden" name="email" value="${email}" />
+			<input type="hidden" name="usuario" value="${usuario}" />
+			<button type="submit">Perfil</button>
+		</form></li>
 
 	</ul>
 	</nav>

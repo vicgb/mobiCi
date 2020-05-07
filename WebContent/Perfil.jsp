@@ -105,7 +105,7 @@ html {
 					<td>${viajei.finDate}</td>
 					<td>${viajei.anclajeInicio.idEstacion}</td>
 					<td>${viajei.anclajeFin.idEstacion}</td>
-					<td>${viajei.idBicicleta}</td>
+					<td>${viajei.idBicileta}</td>
 					<td>${viajei.coste} €</td>
 				</tr>
 			</c:forEach>

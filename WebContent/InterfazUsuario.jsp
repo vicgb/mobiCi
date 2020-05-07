@@ -83,7 +83,7 @@ html {
 				 Coste del viaje: ${viajeTerminado.coste} <br>
 			</c:when>
 			<c:when test="${not empty viaje}">
-				   Usted esta realizando un viaje desde el anclaje ${viaje.anclajeInicio.id} comenzado a las ${viaje.inicioDate} <br>
+				   Usted esta realizando un viaje comenzado a las ${viaje.inicioDate} <br>
 				<c:if test="${not empty error}">
 						${error} <br>
 				</c:if>

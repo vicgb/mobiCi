@@ -39,27 +39,36 @@ public class AlquilarServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		System.out.println("email");
-		System.out.println(req.getParameter("email"));
 		Anclaje anclaje = AnclajeDAOImplementation.getInstancia().read(req.getParameter("anclaje"));
 		Estacion estacion = EstacionDAOImplementation.getInstancia().read(req.getParameter("estacion"));
 		Usuario usuario = UsuarioDAOImplementation.getInstancia().read(req.getParameter("email"));
 		Bicicleta bicicleta= BicicletaDAOImplementation.getInstancia().read(anclaje.getBicicleta());
-
-		Viaje viaje = new Viaje(anclaje, usuario.getEmail(), bicicleta.getId());
-		ViajeDAOImplementation.getInstancia().create(viaje);
+		
+		String email = usuario.getEmail();
+		
+		Viaje viaje = new Viaje(anclaje, email, bicicleta.getId());
 		anclaje.liberarAnclaje();
 		bicicleta.setEstado(EstadoBici.VIAJANDO);
+		usuario.setEstadoUsuario(EstadoUsuario.VIAJANDO);
+		
 		AnclajeDAOImplementation.getInstancia().update(anclaje);
 		BicicletaDAOImplementation.getInstancia().update(bicicleta);
+		UsuarioDAOImplementation.getInstancia().update(usuario);
+		ViajeDAOImplementation.getInstancia().create(viaje);
+		
 		int disponibles = Integer.parseInt(req.getParameter("disponibles"));
 		disponibles--;
+		
 		req.getSession().setAttribute("estacion", estacion);
 		req.getSession().setAttribute("anclaje", anclaje);
 		req.getSession().setAttribute("bicicleta", bicicleta);
 		req.getSession().setAttribute("disponibles", disponibles);
 		req.getSession().setAttribute("alquilado", true);
-		getServletContext().getRequestDispatcher("/Estacion.jsp").forward(req,res);
+		req.getSession().setAttribute("reservado", false);
+		req.getSession().setAttribute("email", email);
+		req.getSession().setAttribute("viaje", viaje);
+		req.getSession().setAttribute("viajeTerminado", null);
+		getServletContext().getRequestDispatcher("/InterfazUsuario.jsp").forward(req,res);
 	}
 
 	/**

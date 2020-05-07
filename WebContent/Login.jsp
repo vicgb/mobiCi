@@ -26,7 +26,7 @@ background-color: #f4f5f7;
 </style>
 <body>
 
-<form action ="LoginServlet" class = "formularioLogin">
+<form action ="LoginServlet" method="post" class = "formularioLogin">
 	<div>
 	<label>Usuario</label>
 	<br>

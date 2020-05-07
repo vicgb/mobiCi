@@ -86,7 +86,7 @@ background-color: #f4f5f7;
 		<div id = "alquiler">
 		<c:choose>
 			<c:when test="${alquilado == true}">
-			Usted ha alquilado la bicicleta ${bicicleta.id}, en el anclaje ${anclaje.id} 
+			Usted ya ha alquilado una bicicleta.
 			</c:when>
 			<c:otherwise>
 				<c:choose>

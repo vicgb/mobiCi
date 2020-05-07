@@ -77,7 +77,6 @@ public class FormRegistroServlet extends HttpServlet {
 			usuario.setCvv(cvv);
 			usuario.setPassword(passwordHash);
 			usuario.setEstadoUsuario(EstadoUsuario.NADA);
-			//usuario.setRepPassword(repPassword);
 			UsuarioDAOImplementation.getInstancia().create(usuario);
 			JOptionPane.showMessageDialog(null, "El usuario se ha registrado correctamente");
 			resp.sendRedirect(req.getContextPath() + "/index.jsp");

@@ -29,7 +29,6 @@ public class Usuario implements Serializable {
 	private String fechaCadu;
 	private String cvv;
 	private String password;
-	private String repPassword;
 	private EstadoUsuario estadoUsuario;
 
 	//Geters y Seters
@@ -111,14 +110,6 @@ public class Usuario implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public String getRepPassword() {
-		return repPassword;
-	}
-
-	public void setRepPassword(String repPassword) {
-		this.repPassword = repPassword;
 	}
 	
 	public EstadoUsuario getEstadoUsuario() {
@@ -205,11 +196,6 @@ public class Usuario implements Serializable {
 			if (other.telefono != null)
 				return false;
 		} else if (!telefono.equals(other.telefono))
-			return false;
-		if (repPassword == null) {
-			if(other.repPassword != null)
-			return false;
-		} else if (!repPassword.contentEquals(other.repPassword))
 			return false;
 		return true;
 	}

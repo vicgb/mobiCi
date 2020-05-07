@@ -13,12 +13,15 @@ import javax.servlet.http.HttpServletResponse;
 import mobici.dao.AnclajeDAOImplementation;
 import mobici.dao.BicicletaDAOImplementation;
 import mobici.dao.EstacionDAOImplementation;
+import mobici.dao.UsuarioDAOImplementation;
 import mobici.dao.ViajeDAOImplementation;
 import mobici.model.Anclaje;
 import mobici.model.Bicicleta;
 import mobici.model.Estacion;
 import mobici.model.EstadoAnclaje;
 import mobici.model.EstadoBici;
+import mobici.model.EstadoUsuario;
+import mobici.model.Usuario;
 import mobici.model.Viaje;
 
 /**
@@ -49,7 +52,6 @@ public class TerminarViajeServlet extends HttpServlet {
 			Anclaje anclaje = anclajes.get(i);
 			if(anclaje.getIdEstacion().equals(estacionFin.getId()) && anclaje.getEstado().equals(EstadoAnclaje.LIBRE)) {
 				//Hay anclajes disponibles en la estacion seleccionada
-				System.out.println("HAY ANCLAJES DISPONIBLES");
 				anclajesDisponibles.add(anclaje);
 			}
 			i++;
@@ -60,6 +62,9 @@ public class TerminarViajeServlet extends HttpServlet {
 			
 			viaje.terminarViaje(anclajeFin);
 			Bicicleta bicicleta = BicicletaDAOImplementation.getInstancia().read(viaje.getIdBicileta());
+			Usuario usuario = UsuarioDAOImplementation.getInstancia().read(viaje.getIdUsuario());
+			usuario.setEstadoUsuario(EstadoUsuario.NADA);
+			UsuarioDAOImplementation.getInstancia().update(usuario);
 			anclajeFin.setEstado(EstadoAnclaje.OCUPADO);
 			anclajeFin.setBicicleta(bicicleta.getId());
 			bicicleta.setEstado(EstadoBici.ANCLADA);

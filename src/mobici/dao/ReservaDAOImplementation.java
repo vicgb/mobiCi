@@ -86,7 +86,6 @@ public class ReservaDAOImplementation implements ReservaDAO {
 				anclaje.setEstado(EstadoAnclaje.OCUPADO);
 				UsuarioDAOImplementation.getInstancia().update(usuario);
 				AnclajeDAOImplementation.getInstancia().update(anclaje);
-				System.out.println("Se ha borrado la reserva con ID usuario " + reserva.getUsuario());
 				instancia.delete(reserva);
 			}
 		}

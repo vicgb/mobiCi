@@ -1,6 +1,9 @@
 package mobici.servlets;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -40,8 +43,26 @@ public class FormModificaContraseñaServlet extends HttpServlet {
 		
 		
 		if(((!password.isEmpty())&(!repPassword.isEmpty()))&(repPassword.equals(password))) {
-			usuario.setPassword(password);
-			usuario.setRepPassword(repPassword);
+			
+
+			
+			MessageDigest digest = null;
+			try {
+				digest = MessageDigest.getInstance("SHA-256");
+			} catch (NoSuchAlgorithmException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			byte[] hash = digest.digest(password.getBytes(StandardCharsets.UTF_8));
+			
+			String passwordHash = new String(hash);
+			
+			
+			
+			
+			
+			
+			usuario.setPassword(passwordHash);
 			JOptionPane.showMessageDialog(null, "La contraseña se ha modificado correctamente");
 			req.getSession().setAttribute("usuario", usuario);
 			dao.update(usuario);

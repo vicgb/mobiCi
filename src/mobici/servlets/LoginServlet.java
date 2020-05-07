@@ -91,10 +91,10 @@ public class LoginServlet extends HttpServlet {
 				req.getSession().setAttribute("anclaje", anclajeReservado);
 				req.getSession().setAttribute("estacion", estacionReservada);
 				req.getSession().setAttribute("vencimiento", reserva.getVencimiento().getTime());
-			}
-			else {
+			}else {
 				req.getSession().setAttribute("reservado", false);
 			}
+
 			getServletContext().getRequestDispatcher("/InterfazUsuario.jsp").forward(req,resp);
 		
 		} else {

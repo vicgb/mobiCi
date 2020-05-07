@@ -1,6 +1,7 @@
 package mobici.servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import mobici.dao.UsuarioDAOImplementation;
 import mobici.dao.ViajeDAOImplementation;
+import mobici.model.Anclaje;
+import mobici.model.EstadoAnclaje;
 import mobici.model.Usuario;
 import mobici.model.Viaje;
 
@@ -33,21 +36,37 @@ public class FormPerfilServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
-		List<Viaje> viajes = (List<Viaje>) ViajeDAOImplementation.getInstancia().readAll();
-		String id = req.getParameter("id");
-		Usuario usuario = UsuarioDAOImplementation.getInstancia().read("email");
+		String email = req.getParameter("email");
+		Usuario usuario = UsuarioDAOImplementation.getInstancia().read(email);
 		
-
-		req.getSession().setAttribute("id", viajes);
 		
 		req.setAttribute("usuario", usuario);
-
-		req.getSession().setAttribute("idUsuario", viajes);
 		
+		List<Viaje> viajes = (List<Viaje>) ViajeDAOImplementation.getInstancia().readAll();
+		List<Viaje> viajesUsuario = new ArrayList<Viaje>();
+		int i=0;
+		while(i< viajes.size()) {
+			Viaje viaje= viajes.get(i);
+			if(viaje.getIdUsuario().equals(usuario.getEmail())) {
+				viajesUsuario.add(viaje);
+			}
+			i++;
+		}
 
+		req.getSession().setAttribute("viajes", viajesUsuario);
 
 	getServletContext().getRequestDispatcher("/Perfil.jsp").forward(req,res);
 }
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+	
+	  
 
 
 }

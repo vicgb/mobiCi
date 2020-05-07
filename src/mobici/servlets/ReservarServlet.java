@@ -69,7 +69,9 @@ public class ReservarServlet extends HttpServlet {
 		req.getSession().setAttribute("reservado", true);
 		req.getSession().setAttribute("estacionReservada", estacion.getId());
 		req.getSession().setAttribute("vencimiento", reserva.getVencimiento().getTime());
-		getServletContext().getRequestDispatcher("/Estacion.jsp").forward(req,res);
+		req.getSession().setAttribute("viajeTerminado", null);
+		req.getSession().setAttribute("viaje", null);
+		getServletContext().getRequestDispatcher("/InterfazUsuario.jsp").forward(req,res);
 	}
 
 	/**
